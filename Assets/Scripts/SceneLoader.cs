@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static ServiceLocator ServiceLocator = new ServiceLocator();
 
-    // Update is called once per frame
-    void Update()
+    private ActionMap _actionMap;
+
+    private Player _player;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
     {
-        
+        ServiceLocator = new ServiceLocator();
+
+        _actionMap = new ActionMap();
+        _actionMap.Enable();
+        ServiceLocator.Register<ActionMap>(_actionMap);
+
+        _player = FindFirstObjectByType<Player>();
+        _player.Initialize();
+        ServiceLocator.Register<Player>(_player);
     }
 }

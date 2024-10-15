@@ -44,4 +44,9 @@ public class FSM : IFSM
     {
         CurrentState?.Update();
     }
+
+    public virtual void FixedUpdate()
+    {
+        CurrentState?.FixedUpdate();
+    }
 }
