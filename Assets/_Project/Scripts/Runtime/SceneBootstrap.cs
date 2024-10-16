@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneLoader : MonoBehaviour
+public class SceneBootstrap : MonoBehaviour
 {
     public static ServiceLocator ServiceLocator = new ServiceLocator();
 
