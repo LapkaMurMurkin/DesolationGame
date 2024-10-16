@@ -16,7 +16,6 @@ public class PlayerFSMState_Dash : PlayerFSMState
 
     public override void Exit()
     {
-
     }
 
     public override void Update()
