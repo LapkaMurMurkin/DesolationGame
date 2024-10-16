@@ -31,19 +31,15 @@ public class PlayerFSMState_Idle : PlayerFSMState
 
     private void Move(InputAction.CallbackContext context)
     {
-        Debug.Log("Move");
         _FSM.SwitchStateTo<PlayerFSMState_Movement>();
     }
 
     private void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("Dash");
         _FSM.SwitchStateTo<PlayerFSMState_Dash>();
-
     }
     private void Attack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack");
-
     }
 }

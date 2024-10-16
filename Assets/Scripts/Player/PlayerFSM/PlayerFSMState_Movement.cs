@@ -27,7 +27,6 @@ public class PlayerFSMState_Movement : PlayerFSMState
     private void Dash(InputAction.CallbackContext context)
     {
         _FSM.SwitchStateTo<PlayerFSMState_Dash>();
-        Debug.Log("dashh");
     }
 
     public override void Update()
@@ -37,9 +36,16 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _FSM.TargetVelocityVector = _FSM.MovementDirection * _FSM.Speed;
 
         if (_movement.phase is InputActionPhase.Started)
+        {
             _FSM.CurrentVelocityVector = Vector3.MoveTowards(_FSM.CurrentVelocityVector, _FSM.TargetVelocityVector, _FSM.Speed / _FSM.StartTime * Time.deltaTime);
+            _FSM.AnimatorController.SwitchAnimationTo("Run", 0.1f);
+        }
         else
+        {
             _FSM.CurrentVelocityVector = Vector3.MoveTowards(_FSM.CurrentVelocityVector, _FSM.TargetVelocityVector, _FSM.Speed / _FSM.StopTime * Time.deltaTime);
+            _FSM.AnimatorController.SwitchAnimationTo("Idle", 0.3f);
+
+        }
 
         _FSM.Player.gameObject.transform.position += _FSM.CurrentVelocityVector * Time.deltaTime;
 

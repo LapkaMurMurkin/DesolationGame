@@ -10,6 +10,9 @@ public class PlayerFSM : FSM
 {
     public Player Player;
     public PlayerModel Model;
+    public Animator Animator;
+    public AnimatorController AnimatorController;
+    public PlayerAnimatorEvents PlayerAnimatorEvents;
 
     public InputAction Movement;
     public InputAction Dash;
@@ -30,6 +33,9 @@ public class PlayerFSM : FSM
     {
         Player = player;
         Model = playerModel;
+        Animator = Player.GetComponentInChildren<Animator>();
+        AnimatorController = new AnimatorController(Animator);
+        PlayerAnimatorEvents = Player.GetComponentInChildren<PlayerAnimatorEvents>();
 
         ActionMap actionMap = ServiceLocator.Get<ActionMap>();
         Movement = actionMap.Player.Movement;
