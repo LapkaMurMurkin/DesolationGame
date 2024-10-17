@@ -15,6 +15,7 @@ public class PlayerFSMState_Idle : PlayerFSMState
         _FSM.Movement.performed += Move;
         _FSM.Dash.performed += Dash;
         _FSM.Attack.performed += Attack;
+        _FSM.Skill_1.performed += Skill_1;
     }
 
     public override void Exit()
@@ -22,6 +23,7 @@ public class PlayerFSMState_Idle : PlayerFSMState
         _FSM.Movement.performed -= Move;
         _FSM.Dash.performed -= Dash;
         _FSM.Attack.performed -= Attack;
+        _FSM.Skill_1.performed -= Skill_1;
     }
 
     public override void Update()
@@ -41,5 +43,10 @@ public class PlayerFSMState_Idle : PlayerFSMState
     private void Attack(InputAction.CallbackContext context)
     {
         _FSM.SwitchStateTo<PlayerFSMState_Attack>();
+    }
+
+    private void Skill_1(InputAction.CallbackContext context)
+    {
+        _FSM.SwitchStateTo<PlayerFSMState_SwingAttack>();
     }
 }
