@@ -17,11 +17,13 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _dash = _FSM.Dash;
 
         _dash.performed += Dash;
+        _FSM.Attack.performed += Attack;
     }
 
     public override void Exit()
     {
         _dash.performed -= Dash;
+        _FSM.Attack.performed -= Attack;
     }
 
     private void Dash(InputAction.CallbackContext context)
@@ -44,12 +46,16 @@ public class PlayerFSMState_Movement : PlayerFSMState
         {
             _FSM.CurrentVelocityVector = Vector3.MoveTowards(_FSM.CurrentVelocityVector, _FSM.TargetVelocityVector, _FSM.Speed / _FSM.StopTime * Time.deltaTime);
             _FSM.AnimatorController.SwitchAnimationTo("Idle", 0.3f);
-
         }
 
         _FSM.Player.gameObject.transform.position += _FSM.CurrentVelocityVector * Time.deltaTime;
 
         if (_FSM.TargetVelocityVector != Vector3.zero)
             _FSM.Player.gameObject.transform.rotation = Quaternion.RotateTowards(_FSM.Player.gameObject.transform.rotation, Quaternion.LookRotation(_FSM.TargetVelocityVector), 180 / 0.2f * Time.deltaTime);
+    }
+
+        private void Attack(InputAction.CallbackContext context)
+    {
+        _FSM.SwitchStateTo<PlayerFSMState_Attack>();
     }
 }

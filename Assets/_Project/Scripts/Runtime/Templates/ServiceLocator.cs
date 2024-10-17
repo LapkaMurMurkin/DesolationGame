@@ -15,8 +15,9 @@ public class ServiceLocator
     public static T Get<T>()
     {
         if (_services.ContainsKey(typeof(T)))
-        return (T)_services[typeof(T)];
+            return (T)_services[typeof(T)];
 
+        Debug.LogError($"Type \"{typeof(T)}\" is not registered");
         return default(T);
     }
 }

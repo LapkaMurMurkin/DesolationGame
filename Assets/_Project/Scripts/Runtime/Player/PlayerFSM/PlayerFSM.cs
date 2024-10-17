@@ -13,6 +13,7 @@ public class PlayerFSM : FSM
     public Animator Animator;
     public AnimatorController AnimatorController;
     public PlayerAnimatorEvents PlayerAnimatorEvents;
+    public Raycaster Raycaster;
 
     public InputAction Movement;
     public InputAction Dash;
@@ -36,6 +37,7 @@ public class PlayerFSM : FSM
         Animator = Player.GetComponentInChildren<Animator>();
         AnimatorController = new AnimatorController(Animator);
         PlayerAnimatorEvents = Player.GetComponentInChildren<PlayerAnimatorEvents>();
+        Raycaster = ServiceLocator.Get<Raycaster>();
 
         ActionMap actionMap = ServiceLocator.Get<ActionMap>();
         Movement = actionMap.Player.Movement;

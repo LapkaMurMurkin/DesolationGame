@@ -40,6 +40,6 @@ public class PlayerFSMState_Idle : PlayerFSMState
     }
     private void Attack(InputAction.CallbackContext context)
     {
-        Debug.Log("Attack");
+        _FSM.SwitchStateTo<PlayerFSMState_Attack>();
     }
 }
