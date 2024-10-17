@@ -18,6 +18,8 @@ public class PlayerFSM : FSM
     public InputAction Movement;
     public InputAction Dash;
     public InputAction Attack;
+    public InputAction Skill_1;
+
 
     public Vector2 MovementInput;
     public Vector3 MovementDirection;
@@ -43,5 +45,6 @@ public class PlayerFSM : FSM
         Movement = actionMap.Player.Movement;
         Dash = actionMap.Player.Dash;
         Attack = actionMap.Player.Attack;
+        Skill_1 = actionMap.Player.Skill_1;
     }
 }
