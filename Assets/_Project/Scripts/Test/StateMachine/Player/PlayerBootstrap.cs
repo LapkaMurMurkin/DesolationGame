@@ -13,6 +13,7 @@ public class DashContext : IContext
 public class PlayerBootstrap : MonoBehaviour
 {
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private CharacterController _characterController;
 
     void Start()
     {
@@ -22,8 +23,8 @@ public class PlayerBootstrap : MonoBehaviour
 
         IStateMachine stateMachine = builder
             .AddState(new IdleState())
-            .AddState(new MoveState())
-            .AddState(new DashState())
+            .AddState(new MoveState(_characterController, map.Player.Movement))
+            .AddState(new DashState(_characterController))
             .AddTransition<IdleState, MoveState, UserInput>(ctx => ctx.IsMoving)
             .AddTransition<IdleState, DashState, DashContext>(ctx => ctx.IsDashPerformed)
             .AddTransition<MoveState, DashState, DashContext>(ctx => ctx.IsDashPerformed)

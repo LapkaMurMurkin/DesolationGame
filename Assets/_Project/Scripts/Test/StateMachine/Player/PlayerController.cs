@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
         _inputActions.Player.Dash.performed -= ctx => DashPerformed();
     }
 
+    private void Update()
+    {
+        _stateMachine.Update();
+    }
+
 
     private void OnMoveInputChanged(Vector2 input)
     {
