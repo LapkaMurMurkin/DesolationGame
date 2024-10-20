@@ -15,22 +15,12 @@ public class PlayerFSMState_Movement : PlayerFSMState
     {
         _movement = _FSM.Movement;
         _dash = _FSM.Dash;
-
-        _dash.performed += Dash;
-        _FSM.Attack.performed += Attack;
-        _FSM.Skill_1.performed += Skill_1;
+        Debug.Log("MovementState");
     }
 
     public override void Exit()
     {
-        _dash.performed -= Dash;
-        _FSM.Attack.performed -= Attack;
-        _FSM.Skill_1.performed -= Skill_1;
-    }
 
-    private void Dash(InputAction.CallbackContext context)
-    {
-        _FSM.SwitchStateTo<PlayerFSMState_Dash>();
     }
 
     public override void Update()
@@ -54,15 +44,5 @@ public class PlayerFSMState_Movement : PlayerFSMState
 
         if (_FSM.TargetVelocityVector != Vector3.zero)
             _FSM.Player.gameObject.transform.rotation = Quaternion.RotateTowards(_FSM.Player.gameObject.transform.rotation, Quaternion.LookRotation(_FSM.TargetVelocityVector), 180 / 0.2f * Time.deltaTime);
-    }
-
-    private void Attack(InputAction.CallbackContext context)
-    {
-        _FSM.SwitchStateTo<PlayerFSMState_Attack>();
-    }
-
-    private void Skill_1(InputAction.CallbackContext context)
-    {
-        _FSM.SwitchStateTo<PlayerFSMState_SwingAttack>();
     }
 }

@@ -19,6 +19,9 @@ public class PlayerFSMState_Attack : PlayerFSMState
         _FSM.AnimatorController.SwitchAnimationTo("Attack", 0f);
 
         _FSM.PlayerAnimatorEvents.OnAnimationEnd += EndAttack;
+
+        Debug.Log("AttackState");
+
     }
 
     public override void Exit()

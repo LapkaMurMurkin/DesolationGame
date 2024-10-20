@@ -20,7 +20,6 @@ public class PlayerFSM : FSM
     public InputAction Attack;
     public InputAction Skill_1;
 
-
     public Vector2 MovementInput;
     public Vector3 MovementDirection;
     public Vector3 CurrentVelocityVector;

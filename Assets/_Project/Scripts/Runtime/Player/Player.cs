@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+using R3;
 
 public class Player : MonoBehaviour
 {
     private PlayerModel _model;
 
     private PlayerFSM _FSM;
+    private PlayerInputListener _playerInputListener;
 
     public void Initialize()
     {
@@ -17,6 +20,9 @@ public class Player : MonoBehaviour
         _FSM.InitializeState(new PlayerFSMState_Attack(_FSM));
         _FSM.InitializeState(new PlayerFSMState_SwingAttack(_FSM));
         _FSM.SwitchStateTo<PlayerFSMState_Idle>();
+
+        _playerInputListener = new PlayerInputListener(_FSM);
+        _playerInputListener.Enable();
     }
 
     private void FixedUpdate()
