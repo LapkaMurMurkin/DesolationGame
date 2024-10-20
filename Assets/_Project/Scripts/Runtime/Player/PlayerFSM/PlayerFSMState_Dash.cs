@@ -12,6 +12,8 @@ public class PlayerFSMState_Dash : PlayerFSMState
     public override void Enter()
     {
         _FSM.CurrentVelocityVector = _FSM.Player.transform.forward * _FSM.Speed * _FSM.DashAcceleration;
+        Debug.Log("DashState");
+
     }
 
     public override void Exit()
