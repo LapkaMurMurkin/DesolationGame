@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
         _FSM.InitializeState(new PlayerFSMState_Idle(_FSM));
         _FSM.InitializeState(new PlayerFSMState_Movement(_FSM));
         _FSM.InitializeState(new PlayerFSMState_Dash(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_Attack(_FSM));
+        _FSM.InitializeState(new PlayerFSMState_BaseAttack(_FSM));
+        _FSM.InitializeState(new PlayerFSMState_BaseAttackAwaitCombo(_FSM));
         _FSM.InitializeState(new PlayerFSMState_SwingAttack(_FSM));
         _FSM.SwitchStateTo<PlayerFSMState_Idle>();
 

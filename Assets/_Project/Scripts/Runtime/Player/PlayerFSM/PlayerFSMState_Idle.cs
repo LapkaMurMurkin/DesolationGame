@@ -8,10 +8,22 @@ using UnityEngine.Timeline;
 
 public class PlayerFSMState_Idle : PlayerFSMState
 {
-    public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM) { }
+    private PlayerTransformController _transformController;
+    private float _movementStopDuration;
+
+    public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM)
+    {
+        _transformController = FSM.TransformController;
+        _movementStopDuration = 0.3f;
+    }
 
     public override void Enter()
     {
+        _transformController.TargetVelocityVector = Vector3.zero;
+        _transformController.VelocityTransitionDelta = _transformController.CurrentVelocityVector.magnitude;
+        _transformController.VelocityTransitionDuration = _movementStopDuration;
+
+        _FSM.AnimatorController.SwitchAnimationTo("Idle", _movementStopDuration);
         Debug.Log("IdleState");
     }
 
@@ -21,7 +33,6 @@ public class PlayerFSMState_Idle : PlayerFSMState
 
     public override void Update()
     {
-
     }
 
 }
