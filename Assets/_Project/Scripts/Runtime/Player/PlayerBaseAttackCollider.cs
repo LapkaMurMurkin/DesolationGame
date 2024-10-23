@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerWeaponCollider : MonoBehaviour
+public class PlayerBaseAttackCollider : MonoBehaviour
 {
     public Action<Dummy> onDummyCollision;
 

@@ -11,10 +11,19 @@ public class PlayerFSMState_Idle : PlayerFSMState
     private PlayerTransformController _transformController;
     private float _movementStopDuration;
 
+    private List<string> _idleAnimations;
+
     public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM)
     {
         _transformController = FSM.TransformController;
         _movementStopDuration = 0.3f;
+
+        _idleAnimations = new List<string>{
+            {PlayerAnimatorController.IDLE_ANIM_NAME},
+            {PlayerAnimatorController.BASE_ATTACK_END_1_ANIM_NAME},
+            {PlayerAnimatorController.BASE_ATTACK_END_2_ANIM_NAME},
+            {PlayerAnimatorController.BASE_ATTACK_END_3_ANIM_NAME}
+        };
     }
 
     public override void Enter()
@@ -24,7 +33,6 @@ public class PlayerFSMState_Idle : PlayerFSMState
         _transformController.VelocityTransitionDuration = _movementStopDuration;
 
         _FSM.AnimatorController.SwitchAnimationTo("Idle", _movementStopDuration);
-        Debug.Log("IdleState");
     }
 
     public override void Exit()

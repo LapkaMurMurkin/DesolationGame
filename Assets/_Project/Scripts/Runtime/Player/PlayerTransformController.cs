@@ -40,11 +40,11 @@ public class PlayerTransformController
         VelocityTransitionDelta = Math.Abs((CurrentVelocityVector - TargetVelocityVector).magnitude);
         VelocityTransitionDuration = duration;
 
-        Debug.Log("startSpeed " + startSpeed);
+/*         Debug.Log("startSpeed " + startSpeed);
         Debug.Log("acceleratio " + acceleratio);
         Debug.Log("TargetVelocityVector " + TargetVelocityVector);
         Debug.Log("CurrentVelocityVector " + CurrentVelocityVector);
         Debug.Log("VelocityTransitionDelta " + VelocityTransitionDelta);
-        Debug.Log("VelocityTransitionDuration " + VelocityTransitionDuration);
+        Debug.Log("VelocityTransitionDuration " + VelocityTransitionDuration); */
     }
 }

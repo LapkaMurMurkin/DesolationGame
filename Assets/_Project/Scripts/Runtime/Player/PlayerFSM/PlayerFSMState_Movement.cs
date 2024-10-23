@@ -32,7 +32,6 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _transformController.VelocityTransitionDuration = _movementStartDuration;
 
         _FSM.AnimatorController.SwitchAnimationTo("Run", _movementStartDuration);
-        Debug.Log("MovementState");
     }
 
     public override void Exit()

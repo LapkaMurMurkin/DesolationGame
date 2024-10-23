@@ -61,11 +61,13 @@ public class PlayerInputListener
 
     private void Attack(InputAction.CallbackContext context)
     {
-        if (_FSM.CurrentState is not PlayerFSMState_BaseAttackAwaitCombo)
-            _FSM.AnimatorController.BaseAttackComboSequenceIndex = 0;
-
         if (_transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Contains(_FSM.CurrentState.GetType()))
+        {
+            if (_FSM.CurrentState is not PlayerFSMState_BaseAttackAwaitCombo)
+                _FSM.AnimatorController.BaseAttackComboSequenceIndex = 0;
+
             _FSM.SwitchStateTo<PlayerFSMState_BaseAttack>();
+        }
     }
 
     private void Skill_1(InputAction.CallbackContext context)

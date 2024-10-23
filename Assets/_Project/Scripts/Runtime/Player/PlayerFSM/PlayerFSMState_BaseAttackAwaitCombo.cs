@@ -7,31 +7,35 @@ using UnityEngine.Timeline;
 
 public class PlayerFSMState_BaseAttackAwaitCombo : PlayerFSMState
 {
-    private float _comboAttackDelay;
-    private float _comboAttackTimer;
-
     public PlayerFSMState_BaseAttackAwaitCombo(PlayerFSM FSM) : base(FSM)
     {
-        _comboAttackDelay = 0.5f;
-        _comboAttackTimer = _comboAttackDelay;
+
     }
 
     public override void Enter()
     {
-        _comboAttackTimer = _comboAttackDelay;
+        _FSM.AnimatorEvents.OnAnimationEnd += EndCombo;
+
+        _animatorController.SwitchAnimationTo(_animatorController.GetNextAttackInComboSequence(), 0f);
     }
 
     public override void Exit()
     {
-
+        _FSM.AnimatorEvents.OnAnimationEnd -= EndCombo;
     }
 
-    public override void Update()
+    private void EndCombo()
     {
-        _comboAttackTimer -= Time.deltaTime;
-
-        if (_comboAttackTimer <= 0)
-            _FSM.SwitchStateTo<PlayerFSMState_Movement>();
-
+        _FSM.SwitchStateTo<PlayerFSMState_Idle>();
+        _animatorController.SwitchAnimationTo(PlayerAnimatorController.BASE_ATTACK_END_3_ANIM_NAME);
     }
+
+    /*     public override void Update()
+        {
+            _comboAttackTimer -= Time.deltaTime;
+
+            if (_comboAttackTimer <= 0)
+                _FSM.SwitchStateTo<PlayerFSMState_Movement>();
+
+        } */
 }
