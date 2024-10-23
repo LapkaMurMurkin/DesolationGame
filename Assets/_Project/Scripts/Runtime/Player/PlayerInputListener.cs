@@ -25,8 +25,10 @@ public class PlayerInputListener
         _skill_1 = _actionMap.Player.Skill_1;
 
         _transitionToFromAccess = new Dictionary<Type, HashSet<Type>>();
-        _transitionToFromAccess.Add(typeof(PlayerFSMState_Attack), new HashSet<Type>());
-        _transitionToFromAccess[typeof(PlayerFSMState_Attack)].Add(typeof(PlayerFSMState_Movement));
+        _transitionToFromAccess.Add(typeof(PlayerFSMState_BaseAttack), new HashSet<Type>());
+        _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Idle));
+        _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Movement));
+        _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_BaseAttackAwaitCombo));
     }
 
     public void Enable()
@@ -56,12 +58,14 @@ public class PlayerInputListener
         if (_FSM.CurrentState is not PlayerFSMState_Dash)
             _FSM.SwitchStateTo<PlayerFSMState_Dash>();
     }
-    
+
     private void Attack(InputAction.CallbackContext context)
     {
-        //_FSM.CurrentState.Update();
-        if (_transitionToFromAccess[typeof(PlayerFSMState_Attack)].Contains(_FSM.CurrentState.GetType()))
-            _FSM.SwitchStateTo<PlayerFSMState_Attack>();
+        if (_FSM.CurrentState is not PlayerFSMState_BaseAttackAwaitCombo)
+            _FSM.AnimatorController.BaseAttackComboSequenceIndex = 0;
+
+        if (_transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Contains(_FSM.CurrentState.GetType()))
+            _FSM.SwitchStateTo<PlayerFSMState_BaseAttack>();
     }
 
     private void Skill_1(InputAction.CallbackContext context)

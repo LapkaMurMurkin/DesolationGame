@@ -1,48 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerFSMState_Movement : PlayerFSMState
 {
-    public PlayerFSMState_Movement(PlayerFSM FSM) : base(FSM) { }
+    private PlayerTransformController _transformController;
 
     private InputAction _movement;
-    private InputAction _dash;
+    private Vector2 _movementInput;
+    private Vector3 _movementDirection;
+    private float _movementSpeed;
+    private float _movementStartDuration;
+
+    public PlayerFSMState_Movement(PlayerFSM FSM) : base(FSM)
+    {
+        _transformController = FSM.TransformController;
+
+        _movement = ServiceLocator.Get<ActionMap>().Player.Movement;
+        _movementInput = new Vector2();
+        _movementDirection = new Vector3();
+        _movementSpeed = 5f;
+        _movementStartDuration = 0.1f;
+    }
 
     public override void Enter()
     {
-        _movement = _FSM.Movement;
-        _dash = _FSM.Dash;
+        _transformController.VelocityTransitionDelta = _movementSpeed;
+        _transformController.VelocityTransitionDuration = _movementStartDuration;
+
+        _FSM.AnimatorController.SwitchAnimationTo("Run", _movementStartDuration);
         Debug.Log("MovementState");
     }
 
     public override void Exit()
     {
-
     }
 
     public override void Update()
     {
-        _FSM.MovementInput = _movement.ReadValue<Vector2>();
-        _FSM.MovementDirection = new Vector3(_FSM.MovementInput.x, 0, _FSM.MovementInput.y);
-        _FSM.TargetVelocityVector = _FSM.MovementDirection * _FSM.Speed;
-
-        if (_movement.phase is InputActionPhase.Started)
+        _movementInput = _movement.ReadValue<Vector2>();
+        if (_movementInput == Vector2.zero)
         {
-            _FSM.CurrentVelocityVector = Vector3.MoveTowards(_FSM.CurrentVelocityVector, _FSM.TargetVelocityVector, _FSM.Speed / _FSM.StartTime * Time.deltaTime);
-            _FSM.AnimatorController.SwitchAnimationTo("Run", 0.1f);
-        }
-        else
-        {
-            _FSM.CurrentVelocityVector = Vector3.MoveTowards(_FSM.CurrentVelocityVector, _FSM.TargetVelocityVector, _FSM.Speed / _FSM.StopTime * Time.deltaTime);
-            _FSM.AnimatorController.SwitchAnimationTo("Idle", 0.3f);
+            _FSM.SwitchStateTo<PlayerFSMState_Idle>();
+            return;
         }
 
-        _FSM.Player.gameObject.transform.position += _FSM.CurrentVelocityVector * Time.deltaTime;
-
-        if (_FSM.TargetVelocityVector != Vector3.zero)
-            _FSM.Player.gameObject.transform.rotation = Quaternion.RotateTowards(_FSM.Player.gameObject.transform.rotation, Quaternion.LookRotation(_FSM.TargetVelocityVector), 180 / 0.2f * Time.deltaTime);
+        _movementDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
+        _transformController.TargetVelocityVector = _movementDirection * _movementSpeed;
     }
+
 }

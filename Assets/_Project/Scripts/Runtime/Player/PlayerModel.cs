@@ -9,20 +9,15 @@ public class PlayerModel
 
     public PlayerModel()
     {
-        Stat level = new Stat(1);
-        Stat experience = new Stat(0);
-        Stat maxHealth = new Stat(100);
-        Stat currentHealth = new Stat(100);
-        Stat maxMana = new Stat(20);
-        Stat currentMana = new Stat(20);
+        Dictionary<StatID, Stat> stats = new Dictionary<StatID, Stat>{
 
-        Dictionary<StatID, Stat> stats = new Dictionary<StatID, Stat>();
-        stats.Add(StatID.LEVEL, level);
-        stats.Add(StatID.EXPERIENCE, experience);
-        stats.Add(StatID.MAX_HEALTH, maxHealth);
-        stats.Add(StatID.CURRENT_HEALTH, currentHealth);
-        stats.Add(StatID.MAX_MANA, maxMana);
-        stats.Add(StatID.CURRENT_MANA, currentMana);
+            {StatID.LEVEL, new Stat(1)},
+            {StatID.EXPERIENCE, new Stat(0)},
+            {StatID.MAX_HEALTH, new Stat(100)},
+            {StatID.CURRENT_HEALTH, new Stat(100)},
+            {StatID.MAX_MANA, new Stat(20)},
+            {StatID.CURRENT_MANA, new Stat(20)}
+        };
 
         Stats = new ReadOnlyDictionary<StatID, Stat>(stats);
     }

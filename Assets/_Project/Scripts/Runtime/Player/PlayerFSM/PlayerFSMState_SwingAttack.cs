@@ -12,16 +12,16 @@ public class PlayerFSMState_SwingAttack : PlayerFSMState
 
     public override void Enter()
     {
-        _FSM.TargetVelocityVector = Vector3.zero;
+        //_FSM.TargetVelocityVector = Vector3.zero;
 
         _FSM.AnimatorController.SwitchAnimationTo("SwingAttack", 0f);
 
-        _FSM.PlayerAnimatorEvents.OnAnimationEnd += EndAttack;
+        _FSM.AnimatorEvents.OnAnimationEnd += EndAttack;
     }
 
     public override void Exit()
     {
-        _FSM.PlayerAnimatorEvents.OnAnimationEnd -= EndAttack;
+        _FSM.AnimatorEvents.OnAnimationEnd -= EndAttack;
     }
 
     public override void Update()
