@@ -11,11 +11,15 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
     private float _stepRange;
     private float _stepDuration;
 
+    private float _attackDamage;
+
     public PlayerFSMState_BaseAttack(PlayerFSM FSM) : base(FSM)
     {
         _transformController = FSM.TransformController;
         _stepRange = 1.5f;
         _stepDuration = 0.4f;
+
+        _attackDamage = _FSM.Player._playerStatsInitialization.AttackDamage;
     }
 
     public override void Enter()
@@ -42,6 +46,6 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     private void DealDamage(Dummy dummy)
     {
-        Debug.Log($"Dummy damage {_animatorController.BaseAttackComboSequenceIndex}");
+        Debug.Log($"Dummy damage {_animatorController.BaseAttackComboSequenceIndex * _attackDamage}");
     }
 }
