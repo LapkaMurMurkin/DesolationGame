@@ -5,14 +5,14 @@ using UnityEngine;
 using Unity.Properties;
 
 #if UNITY_EDITOR
-[CreateAssetMenu(menuName = "Behavior/Event Channels/EnemyReachedSpecificLocation")]
+[CreateAssetMenu(menuName = "Behavior/Event Channels/EnemyPreparedToAttack")]
 #endif
 [Serializable, GeneratePropertyBag]
-[EventChannelDescription(name: "EnemyReachedSpecificLocation", message: "Agent reached specific location", category: "Events", id: "7fff2a1b54e2d9e5355b51922bbe49af")]
-public partial class EnemyReachedSpecificLocation : EventChannelBase
+[EventChannelDescription(name: "EnemyPreparedToAttack", message: "Enemy prepared to Attack", category: "Events", id: "d9842ee2a7527c274a2acedee99d22d7")]
+public partial class EnemyPreparedToAttackEvent : EventChannelBase
 {
-    public delegate void EnemyReachedSpecificLocationEventHandler();
-    public event EnemyReachedSpecificLocationEventHandler Event; 
+    public delegate void EnemyPreparedToAttackEventHandler();
+    public event EnemyPreparedToAttackEventHandler Event; 
 
     public void SendEventMessage()
     {
@@ -26,7 +26,7 @@ public partial class EnemyReachedSpecificLocation : EventChannelBase
 
     public override Delegate CreateEventHandler(BlackboardVariable[] vars, System.Action callback)
     {
-        EnemyReachedSpecificLocationEventHandler del = () =>
+        EnemyPreparedToAttackEventHandler del = () =>
         {
             callback();
         };
@@ -35,12 +35,12 @@ public partial class EnemyReachedSpecificLocation : EventChannelBase
 
     public override void RegisterListener(Delegate del)
     {
-        Event += del as EnemyReachedSpecificLocationEventHandler;
+        Event += del as EnemyPreparedToAttackEventHandler;
     }
 
     public override void UnregisterListener(Delegate del)
     {
-        Event -= del as EnemyReachedSpecificLocationEventHandler;
+        Event -= del as EnemyPreparedToAttackEventHandler;
     }
 }
 

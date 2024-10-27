@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3145fba14dadf8744a3bf86918ba5323, type: 3}
-  m_Name: New Enemy Reached Specific Location
+  m_Script: {fileID: 11500000, guid: b147495ac494454479dd1e7b50296856, type: 3}
+  m_Name: New Enemy Enter In Trigger
   m_EditorClassIdentifier: 
