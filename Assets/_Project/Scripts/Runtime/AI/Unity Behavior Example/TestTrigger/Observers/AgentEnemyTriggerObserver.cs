@@ -6,6 +6,7 @@ public class AgentEnemyTriggerObserver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _enemyEnterTheTrigger.SendEventMessage(other.transform);
+        if(other.transform.GetComponent<Player>() != null)
+            _enemyEnterTheTrigger.SendEventMessage(other.transform);
     }
 }
