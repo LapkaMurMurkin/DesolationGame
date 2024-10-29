@@ -28,7 +28,6 @@ public class PlayerFSMState_Dash : PlayerFSMState
         _timer = _dashDuration;
         _animatorController.SwitchAnimationTo("Dash");
         _transformController.AddAcceleration(_dashRange, _dashDuration);
-        Debug.Log("DashState");
     }
 
     public override void Update()

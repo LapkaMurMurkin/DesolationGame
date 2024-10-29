@@ -18,14 +18,17 @@ public class SceneBootstrap : MonoBehaviour
         _actionMap.Enable();
         ServiceLocator.Register<ActionMap>(_actionMap);
 
+        _player = FindFirstObjectByType<Player>();
+        _player.Initialize();
+        ServiceLocator.Register<Player>(_player);
+
         _playerCamera = FindFirstObjectByType<PlayerCamera>();
+        _playerCamera.Initialize(_player);
         ServiceLocator.Register<PlayerCamera>(_playerCamera);
 
         _raycaster = new Raycaster(_playerCamera.GetComponent<Camera>());
         ServiceLocator.Register<Raycaster>(_raycaster);
 
-        _player = FindFirstObjectByType<Player>();
-        _player.Initialize();
-        ServiceLocator.Register<Player>(_player);
+
     }
 }

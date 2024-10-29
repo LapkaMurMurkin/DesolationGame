@@ -14,7 +14,7 @@ public class PlayerFSM : FSM
     public Animator Animator;
     public PlayerAnimatorController AnimatorController;
     public PlayerAnimatorEvents AnimatorEvents;
-    public Raycaster Raycaster;
+    //public Raycaster Raycaster;
 
     public PlayerFSM(Player player, PlayerModel playerModel)
     {
@@ -24,7 +24,7 @@ public class PlayerFSM : FSM
         Animator = Player.GetComponentInChildren<Animator>();
         AnimatorController = new PlayerAnimatorController(Animator);
         AnimatorEvents = Player.GetComponentInChildren<PlayerAnimatorEvents>();
-        Raycaster = ServiceLocator.Get<Raycaster>();
+        //Raycaster = ServiceLocator.Get<Raycaster>();
     }
 
     public override void Update()

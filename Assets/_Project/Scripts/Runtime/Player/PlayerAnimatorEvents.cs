@@ -22,4 +22,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     public Action OnDefence;
     private void DefenceEvent() => OnDefence?.Invoke();
+
+    public Action OnAwaitCombo;
+    private void AwaitComboEvent() => OnAwaitCombo?.Invoke();
 }

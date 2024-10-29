@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     private PlayerFSM _FSM;
     private PlayerInputListener _playerInputListener;
+    [SerializeField]
+    public PlayerStatsInitialization _playerStatsInitialization;
 
     public void Initialize()
     {
