@@ -37,7 +37,7 @@ public partial class ForwardNavigateAction : Action
         agentPosition += toDestination * (Speed * Time.deltaTime);
         Agent.Value.transform.position = agentPosition;
 
-        if(Physics.Raycast(Agent.Value.transform.position, Agent.Value.forward * RayDistance, out _raycastHit))
+        if(Physics.Raycast(Agent.Value.transform.position, Agent.Value.forward, out _raycastHit, RayDistance))
         {
             Debug.Log(_raycastHit.transform.name);
             if(_raycastHit.transform.TryGetComponent(out PlayerDamageableComponent playerDamageableComponent))
