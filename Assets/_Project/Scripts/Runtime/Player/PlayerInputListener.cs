@@ -25,10 +25,18 @@ public class PlayerInputListener
         _skill_1 = _actionMap.Player.Skill_1;
 
         _transitionToFromAccess = new Dictionary<Type, HashSet<Type>>();
+
+        _transitionToFromAccess.Add(typeof(PlayerFSMState_Movement), new HashSet<Type>());
+        _transitionToFromAccess[typeof(PlayerFSMState_Movement)].Add(typeof(PlayerFSMState_Idle));
+        _transitionToFromAccess[typeof(PlayerFSMState_Movement)].Add(typeof(PlayerFSMState_BaseAttackAwaitCombo));
+
         _transitionToFromAccess.Add(typeof(PlayerFSMState_BaseAttack), new HashSet<Type>());
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Idle));
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Movement));
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_BaseAttackAwaitCombo));
+
+        //_transitionToFromAccess.Add(typeof(PlayerFSMState_SwingAttack), new HashSet<Type>());
+
     }
 
     public void Enable()
@@ -49,7 +57,7 @@ public class PlayerInputListener
 
     private void Move(InputAction.CallbackContext context)
     {
-        if (_FSM.CurrentState is not PlayerFSMState_Movement)
+        if (_transitionToFromAccess[typeof(PlayerFSMState_Movement)].Contains(_FSM.CurrentState.GetType()))
             _FSM.SwitchStateTo<PlayerFSMState_Movement>();
     }
 

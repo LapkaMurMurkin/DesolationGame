@@ -9,15 +9,15 @@ using System.Linq;
 
 public class Stat
 {
-    public readonly ReactiveProperty<int> BaseValue;
-    public readonly ReadOnlyReactiveProperty<int> ModifiedValue;
+    public readonly ReactiveProperty<float> BaseValue;
+    public readonly ReadOnlyReactiveProperty<float> ModifiedValue;
 
     private readonly ObservableList<StatModifier> _statModifiers;
     public readonly IReadOnlyObservableList<StatModifier> StatModifiers;
 
-    public Stat(int baseValue)
+    public Stat(float baseValue)
     {
-        BaseValue = new ReactiveProperty<int>(baseValue);
+        BaseValue = new ReactiveProperty<float>(baseValue);
         _statModifiers = new ObservableList<StatModifier>();
         StatModifiers = _statModifiers;
 
@@ -25,15 +25,12 @@ public class Stat
             .Merge(
                 StatModifiers.ObserveChanged().Select(e => CalculateModifiedValue())
         ).ToReadOnlyReactiveProperty();
-
-/*         BaseValue.Subscribe(value => Debug.Log("Base" + BaseValue.CurrentValue));
-        ModifiedValue.Subscribe(value => Debug.Log("Mode" + ModifiedValue.CurrentValue)); */
     }
 
-    private int CalculateModifiedValue()
+    private float CalculateModifiedValue()
     {
-        int flatModifierSum = 0;
-        int percentModifierSum = 0;
+        float flatModifierSum = 0;
+        float percentModifierSum = 0;
 
         foreach (StatModifier modifier in _statModifiers)
         {

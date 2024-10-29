@@ -9,14 +9,11 @@ public class PlayerFSMState_BaseAttackAwaitCombo : PlayerFSMState
 {
     public PlayerFSMState_BaseAttackAwaitCombo(PlayerFSM FSM) : base(FSM)
     {
-
     }
 
     public override void Enter()
     {
         _FSM.AnimatorEvents.OnAnimationEnd += EndCombo;
-
-        _animatorController.SwitchAnimationTo(_animatorController.GetNextAttackInComboSequence(), 0f);
     }
 
     public override void Exit()
@@ -27,6 +24,5 @@ public class PlayerFSMState_BaseAttackAwaitCombo : PlayerFSMState
     private void EndCombo()
     {
         _FSM.SwitchStateTo<PlayerFSMState_Idle>();
-        _animatorController.SwitchAnimationTo(PlayerAnimatorController.BASE_ATTACK_END_3_ANIM_NAME);
     }
 }

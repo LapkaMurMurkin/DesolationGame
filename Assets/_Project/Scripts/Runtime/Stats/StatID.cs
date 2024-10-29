@@ -5,5 +5,8 @@ public enum StatID
     CURRENT_HEALTH,
     MAX_HEALTH,
     CURRENT_MANA,
-    MAX_MANA
+    MAX_MANA,
+    BASE_DAMAGE,
+    ATTACK_SPEED,
+    MOVEMENT_SPEED
 }

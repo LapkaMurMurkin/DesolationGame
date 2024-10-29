@@ -8,14 +8,12 @@ using UnityEngine.Timeline;
 
 public class PlayerFSMState_Idle : PlayerFSMState
 {
-    private PlayerTransformController _transformController;
     private float _movementStopDuration;
 
     private List<string> _idleAnimations;
 
     public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM)
     {
-        _transformController = FSM.TransformController;
         _movementStopDuration = 0.3f;
 
         _idleAnimations = new List<string>{

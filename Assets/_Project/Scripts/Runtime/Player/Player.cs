@@ -5,6 +5,7 @@ using R3;
 public class Player : MonoBehaviour
 {
     private PlayerModel _model;
+    private PlayerView _view;
 
     private PlayerFSM _FSM;
     private PlayerInputListener _playerInputListener;
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         _model = new PlayerModel();
+        _model.Initialize(_playerStatsInitialization);
+        _view = GetComponent<PlayerView>();
+        _view.Initialize(_model);
 
         _FSM = new PlayerFSM(this, _model);
         _FSM.InitializeState(new PlayerFSMState_Idle(_FSM));

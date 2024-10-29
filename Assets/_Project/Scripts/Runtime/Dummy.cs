@@ -10,6 +10,8 @@ public class Dummy : MonoBehaviour
     private Material _material;
     private float _timer;
 
+    private float _lastHit;
+
     private void Awake()
     {
         MaxHealth = new Stat(20);
@@ -18,6 +20,7 @@ public class Dummy : MonoBehaviour
         _material = GetComponent<Renderer>().material;
         _material.color = Color.green;
         _timer = 0.25f;
+        _lastHit = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,11 +32,15 @@ public class Dummy : MonoBehaviour
             _timer = 0.25f;
             _material.color = Color.red;
             Debug.Log("Dummy Hit!");
+
+            Debug.Log(_lastHit);
+            _lastHit = 0;
         }
     }
 
     private void Update()
     {
+        _lastHit += Time.deltaTime;
         _timer -= Time.deltaTime;
         if (_timer <= 0)
             _material.color = Color.green;

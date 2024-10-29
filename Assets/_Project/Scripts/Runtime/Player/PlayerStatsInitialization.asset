@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741efa4d14421ff4ca73aad5d359d007, type: 3}
   m_Name: PlayerStatsInitialization
   m_EditorClassIdentifier: 
-  Health: 57.8
-  Mana: 30.6
-  AttackDamage: 10
+  Level: 1
+  Experience: 3
+  Health: 57
+  Mana: 30
+  BaseDamage: 0
   AttackSpeed: 0.71
   MovementSpeed: 5

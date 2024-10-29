@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerFSMState_Movement : PlayerFSMState
 {
-    private PlayerTransformController _transformController;
-
     private InputAction _movement;
     private Vector2 _movementInput;
     private Vector3 _movementDirection;
@@ -17,8 +15,6 @@ public class PlayerFSMState_Movement : PlayerFSMState
 
     public PlayerFSMState_Movement(PlayerFSM FSM) : base(FSM)
     {
-        _transformController = FSM.TransformController;
-
         _movement = ServiceLocator.Get<ActionMap>().Player.Movement;
         _movementInput = new Vector2();
         _movementDirection = new Vector3();

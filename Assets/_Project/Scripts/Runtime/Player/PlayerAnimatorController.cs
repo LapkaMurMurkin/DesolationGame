@@ -28,13 +28,13 @@ public class PlayerAnimatorController : AnimatorController
     {
         BaseAttackComboSequence = new List<string>{
             {BASE_ATTACK_1_ANIM_NAME},
-            {BASE_ATTACK_AWAIT_COMBO_1_ANIM_NAME},
+            //{BASE_ATTACK_AWAIT_COMBO_1_ANIM_NAME},
             //{BASE_ATTACK_END_1_ANIM_NAME},
             {BASE_ATTACK_2_ANIM_NAME},
-            {BASE_ATTACK_AWAIT_COMBO_2_ANIM_NAME},
+            //{BASE_ATTACK_AWAIT_COMBO_2_ANIM_NAME},
             //{BASE_ATTACK_END_2_ANIM_NAME},
             {BASE_ATTACK_3_ANIM_NAME},
-            {BASE_ATTACK_END_3_ANIM_NAME},
+            //{BASE_ATTACK_END_3_ANIM_NAME},
         };
 
         BaseAttackComboSequenceIndex = 0;

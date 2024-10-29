@@ -9,16 +9,12 @@ using UnityEngine.Timeline;
 
 public class PlayerFSMState_Dash : PlayerFSMState
 {
-    private PlayerTransformController _transformController;
-
     private float _dashRange;
     private float _dashDuration;
     private float _timer;
 
     public PlayerFSMState_Dash(PlayerFSM FSM) : base(FSM)
     {
-        _transformController = FSM.TransformController;
-
         _dashRange = 5f;
         _dashDuration = 0.5f;
     }
