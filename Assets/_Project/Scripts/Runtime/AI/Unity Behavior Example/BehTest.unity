@@ -915,38 +915,9 @@ PrefabInstance:
       value: DeerAgent
       objectReference: {fileID: 0}
     - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: 'managedReferences[5589623114717462576]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[System.Single,
-        mscorlib]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: managedReferences[5589623114717462576].Name
-      value: Rotate Speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
       propertyPath: managedReferences[5589623025928766161].m_Value
       value: 
       objectReference: {fileID: 2052866225}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: managedReferences[5589623114717462576].m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[17]'
-      value: 5589623114717462576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: managedReferences[5589623114717462576].GUID.m_Value0
-      value: 14171947323544301292
-      objectReference: {fileID: 0}
-    - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
-      propertyPath: managedReferences[5589623114717462576].GUID.m_Value1
-      value: 467679293624066062
-      objectReference: {fileID: 0}
     - target: {fileID: 4288874177696161711, guid: 1ddb7a1811250874c88a636c1bfa5887, type: 3}
       propertyPath: 'managedReferences[5589622821215011440].m_Value.Array.data[0]'
       value: 
