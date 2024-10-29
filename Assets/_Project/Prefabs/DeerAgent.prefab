@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2505200477078487936}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.28, y: 1.1, z: 2.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,7 +98,9 @@ MonoBehaviour:
   - rid: 5589623049619243812
   - rid: 5589623093286404332
   - rid: 5589623113897477011
-  - rid: 5589623098081280974
+  - rid: 5589623114502243169
+  - rid: 5589623114658742288
+  - rid: 5589623114717462576
   references:
     version: 2
     RefIds:
@@ -126,7 +128,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 9292795787614778410
           m_Value1: 17752155333288175179
-        Name: Speed
+        Name: PatrolSpeed
         m_Value: 4
     - rid: 5589622823881539601
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -134,7 +136,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 13214830426475163160
           m_Value1: 2614231093973789749
-        Name: View Distance
+        Name: Aggro Chase Distance
         m_Value: 8
     - rid: 5589622823881540089
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -142,7 +144,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 11491442524148516089
           m_Value1: 11195357486778486433
-        Name: Dash Speed
+        Name: Ram Speed
         m_Value: 7
     - rid: 5589622823881540598
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -150,7 +152,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 3364345261765373709
           m_Value1: 7234460911973391748
-        Name: Attack Distance
+        Name: Distance For Melee Attack
         m_Value: 1.5
     - rid: 5589622824030961828
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -158,7 +160,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 4210000200253291606
           m_Value1: 403887680359011754
-        Name: Dash Attack Distance
+        Name: Ram Distance
         m_Value: 6
     - rid: 5589622908522595009
       type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -174,7 +176,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 1810786065755327722
           m_Value1: 15345208524832152738
-        Name: New New EnemyPreparedToAttack
+        Name: EnemyPreparedToAttackEvent
         m_Value: {fileID: 11400000, guid: 22f75c792b0175d42a0976817cfa77fa, type: 2}
     - rid: 5589623025665311425
       type: {class: 'BlackboardVariable`1[[EnemyPerformAttackEvent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -182,7 +184,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 6465299435421697097
           m_Value1: 1938396010296244641
-        Name: New New EnemyPerformAttackEvent
+        Name: EnemyPerformAttackEvent
         m_Value: {fileID: 11400000, guid: d2efea14525772d4db155858d1c2fa22, type: 2}
     - rid: 5589623025928765457
       type: {class: 'BlackboardVariable`1[[EnemyEnterInTrigger, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -190,7 +192,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 2042686621333788027
           m_Value1: 10571372938691320276
-        Name: New New EnemyEnterInTrigger
+        Name: EnemyEnterInTriggerEvent
         m_Value: {fileID: 11400000, guid: d6f74a4e9467763499766c95d0be5628, type: 2}
     - rid: 5589623025928766161
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -206,7 +208,7 @@ MonoBehaviour:
         GUID:
           m_Value0: 8610255290779550456
           m_Value1: 10376765477583111280
-        Name: Dash Stop Distance
+        Name: Distance For Ram Attack
         m_Value: 1
     - rid: 5589623093286404332
       type: {class: 'BlackboardVariable`1[[AgentHit, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
@@ -214,24 +216,40 @@ MonoBehaviour:
         GUID:
           m_Value0: 7509643086872857291
           m_Value1: 1664173033949795093
-        Name: New New AgentHit
+        Name: AgentHitEvent
         m_Value: {fileID: 11400000, guid: 94d93e264cabc494d9f1bf3f569f05a6, type: 2}
-    - rid: 5589623098081280974
-      type: {class: 'BlackboardVariable`1[[AgentDamaged, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 14176444172711567401
-          m_Value1: 12771264995687122779
-        Name: New New AgentDamaged
-        m_Value: {fileID: 11400000, guid: 9c8cb401b255b4b469e980fa50dc0c9b, type: 2}
     - rid: 5589623113897477011
       type: {class: 'BlackboardVariable`1[[AgentDeath, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 14188623358054124771
           m_Value1: 16745130316125915217
-        Name: New New AgentDeath
+        Name: AgentDeathEvent
         m_Value: {fileID: 11400000, guid: 12a4a72ed8671854ea08e7f70acfe35e, type: 2}
+    - rid: 5589623114502243169
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9881895455917682541
+          m_Value1: 14322696062974513008
+        Name: Melee Attack Ray Distance
+        m_Value: 2
+    - rid: 5589623114658742288
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 18306951087768227498
+          m_Value1: 1645394598548107892
+        Name: Ram Damage
+        m_Value: 14
+    - rid: 5589623114717462576
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 14171947323544301292
+          m_Value1: 467679293624066062
+        Name: Rotate Speed
+        m_Value: 1
 --- !u!114 &1174015920079530544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,11 +347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyEnterTheTrigger: {fileID: 11400000, guid: d6f74a4e9467763499766c95d0be5628, type: 2}
-  _agentHitEvent: {fileID: 11400000, guid: 94d93e264cabc494d9f1bf3f569f05a6, type: 2}
-  _agent: {fileID: 7020088551846376397}
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 32768
 --- !u!1001 &8483005191193713785
 PrefabInstance:
   m_ObjectHideFlags: 0
