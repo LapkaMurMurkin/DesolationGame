@@ -17,4 +17,12 @@ public class PlayerBaseAttackCollider : MonoBehaviour
 
         //Debug.Log(collision.gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.ApplyDamage(15);
+        }
+    }
 }
