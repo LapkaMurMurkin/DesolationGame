@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 2052866222}
   - component: {fileID: 2052866226}
   - component: {fileID: 2052866227}
+  - component: {fileID: 2052866228}
   m_Layer: 15
   m_Name: Player
   m_TagString: Targets
@@ -793,6 +794,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 200
+--- !u!114 &2052866228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052866221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ba253eadac6f442a35fc5ba6b4aa72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStatsInitialization: {fileID: 11400000, guid: 097a26b2dacad4442ae8ddd39e95d1d4, type: 2}
 --- !u!1 &2078472091
 GameObject:
   m_ObjectHideFlags: 0
