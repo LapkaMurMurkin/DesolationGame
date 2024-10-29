@@ -39,7 +39,7 @@ public partial class ForwardNavigateAction : Action
 
         if(Physics.Raycast(Agent.Value.transform.position, Agent.Value.forward, out _raycastHit, RayDistance))
         {
-            Debug.Log(_raycastHit.transform.name);
+            // Debug.Log(_raycastHit.transform.name);
             if(_raycastHit.transform.TryGetComponent(out PlayerDamageableComponent playerDamageableComponent))
                 return Status.Success;
         }
