@@ -18,7 +18,7 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _movement = ServiceLocator.Get<ActionMap>().Player.Movement;
         _movementInput = new Vector2();
         _movementDirection = new Vector3();
-        _movementSpeed = 5f;
+        _movementSpeed = _FSM.Model.Stats[StatID.MOVEMENT_SPEED].ModifiedValue.CurrentValue;
         _movementStartDuration = 0.1f;
     }
 

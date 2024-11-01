@@ -11,18 +11,16 @@ public class PlayerBaseAttackCollider : MonoBehaviour
         Dummy dummy = collision.gameObject.GetComponent<Dummy>();
         AgentDamageable agentDamageable = collision.gameObject.GetComponent<AgentDamageable>();
 
+        if (dummy is not null)
+        {
+            Destroy(dummy.gameObject);
+            Debug.Log("Kill +XP");
+        }
+
         if (agentDamageable is not null)
             //onDummyCollision.Invoke(dummy);
             onAgentDamageableCollision.Invoke(agentDamageable);
 
         //Debug.Log(collision.gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.transform.TryGetComponent(out IDamageable damageable))
-        {
-            damageable.ApplyDamage(15);
-        }
     }
 }

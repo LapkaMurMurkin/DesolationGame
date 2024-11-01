@@ -34,9 +34,6 @@ public class PlayerInputListener
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Idle));
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_Movement));
         _transitionToFromAccess[typeof(PlayerFSMState_BaseAttack)].Add(typeof(PlayerFSMState_BaseAttackAwaitCombo));
-
-        //_transitionToFromAccess.Add(typeof(PlayerFSMState_SwingAttack), new HashSet<Type>());
-
     }
 
     public void Enable()

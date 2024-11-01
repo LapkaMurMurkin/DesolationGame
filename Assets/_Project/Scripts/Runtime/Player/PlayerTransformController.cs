@@ -15,6 +15,8 @@ public class PlayerTransformController
     public float VelocityTransitionDelta;
     public float VelocityTransitionDuration;
 
+    public ReadOnlyReactiveProperty<Vector3> CurrentVelocityVectorView;
+
     public PlayerTransformController(Transform playerTransform)
     {
         PlayerTransform = playerTransform;

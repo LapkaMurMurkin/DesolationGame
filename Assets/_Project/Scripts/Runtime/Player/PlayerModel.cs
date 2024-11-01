@@ -1,28 +1,60 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.WindowsRuntime;
+using R3;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
 
 public class PlayerModel
 {
     public ReadOnlyDictionary<StatID, Stat> Stats;
+    public ReadOnlyArray<int> LevelsXP;
 
     public PlayerModel()
     {
+        Stat level = new Stat(1);
+        Stat experience = new Stat(0);
+        Stat maxHealth = new Stat(100);
+        Stat currentHealth = new Stat(100);
+        Stat maxMana = new Stat(20);
+        Stat currentMana = new Stat(20);
+        Stat baseDamage = new Stat(10);
+        Stat attackSpeed = new Stat(1);
+        Stat movementSpeed = new Stat(5);
+
         Dictionary<StatID, Stat> stats = new Dictionary<StatID, Stat>{
 
-            {StatID.LEVEL, new Stat(1)},
-            {StatID.EXPERIENCE, new Stat(0)},
-            {StatID.MAX_HEALTH, new Stat(100)},
-            {StatID.CURRENT_HEALTH, new Stat(100)},
-            {StatID.MAX_MANA, new Stat(20)},
-            {StatID.CURRENT_MANA, new Stat(20)},
-            {StatID.BASE_DAMAGE, new Stat(20)},
-            {StatID.ATTACK_SPEED, new Stat(20)},
-            {StatID.MOVEMENT_SPEED, new Stat(20)}
+            {StatID.LEVEL, level},
+            {StatID.EXPERIENCE, experience},
+            {StatID.MAX_HEALTH, maxHealth},
+            {StatID.CURRENT_HEALTH, currentHealth},
+            {StatID.MAX_MANA, maxMana},
+            {StatID.CURRENT_MANA, currentMana},
+            {StatID.BASE_DAMAGE, baseDamage},
+            {StatID.ATTACK_SPEED, attackSpeed},
+            {StatID.MOVEMENT_SPEED, movementSpeed}
         };
 
         Stats = new ReadOnlyDictionary<StatID, Stat>(stats);
+
+        int[] levelsXP = {
+            100,
+            200,
+            300
+        };
+
+        LevelsXP = new ReadOnlyArray<int>(levelsXP);
+
+        experience.BaseValue.Subscribe(value => level.BaseValue.Value = CheckLevelUp((int)value, levelsXP));
+        currentHealth.BaseValue.Subscribe(value =>
+        {
+            if (value <= 0)
+            {
+                Debug.Log("Player Death");
+            }
+        });
     }
 
     public void Initialize(PlayerStatsInitialization initStats)
@@ -36,5 +68,16 @@ public class PlayerModel
         Stats[StatID.BASE_DAMAGE].BaseValue.Value = initStats.BaseDamage;
         Stats[StatID.ATTACK_SPEED].BaseValue.Value = initStats.AttackSpeed;
         Stats[StatID.MOVEMENT_SPEED].BaseValue.Value = initStats.MovementSpeed;
+    }
+
+    public int CheckLevelUp(int xp, int[] arr)
+    {
+        for (int i = 0; i <= arr.Length; i++)
+        {
+            if (xp < arr[i])
+                return i + 1;
+        }
+
+        return 12345;
     }
 }

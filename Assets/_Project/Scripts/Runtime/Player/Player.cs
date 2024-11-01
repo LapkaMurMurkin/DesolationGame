@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     private PlayerInputListener _playerInputListener;
     [SerializeField]
     public PlayerStatsInitialization _playerStatsInitialization;
+    [SerializeField]
+    private AgentDeath _agetDeathTest;
+
+    public bool isInvulnerable;
 
     public void Initialize()
     {
@@ -30,6 +34,12 @@ public class Player : MonoBehaviour
 
         _playerInputListener = new PlayerInputListener(_FSM);
         _playerInputListener.Enable();
+
+        _agetDeathTest.Event += (gameObject) =>
+        {
+            Debug.Log("death");
+            _model.Stats[StatID.EXPERIENCE].BaseValue.Value += 100;
+        };
     }
 
     private void FixedUpdate()
@@ -40,5 +50,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _FSM.Update();
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        _model.Stats[StatID.CURRENT_HEALTH].BaseValue.Value -= damage;
     }
 }

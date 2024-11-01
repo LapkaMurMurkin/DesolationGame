@@ -26,6 +26,7 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, _playerTransform.position + _positionOffset, ref _currentVelocity, _smoothDamp);
-        transform.rotation.SetLookRotation(_playerTransform.position);
+        //transform.rotation.SetLookRotation(_playerTransform.position + Vector3.up);
+        transform.LookAt(_playerTransform);
     }
 }
