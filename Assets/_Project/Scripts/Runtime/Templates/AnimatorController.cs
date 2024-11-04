@@ -14,7 +14,7 @@ public class AnimatorController
     {
         _animator = animator;
     }
-    
+
     public void SwitchAnimationTo(string animationName, float crossFade = 0.2f)
     {
         if (_currentAnimation != animationName)

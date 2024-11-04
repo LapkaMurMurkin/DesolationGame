@@ -14,7 +14,7 @@ public class PlayerFSMState_Idle : PlayerFSMState
 
     public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM)
     {
-        _movementStopDuration = 0.3f;
+        _movementStopDuration = _FSM.Model.PlayerDefaultInitialization.MovementDecelerationDuration;
 
         _idleAnimations = new List<string>{
             {PlayerAnimatorController.IDLE_ANIM_NAME},

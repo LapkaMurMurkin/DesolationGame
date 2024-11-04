@@ -47,4 +47,9 @@ public class PlayerAnimatorController : AnimatorController
 
         return BaseAttackComboSequence[BaseAttackComboSequenceIndex++];
     }
+
+    public void SetAtackSpeed(float value)
+    {
+        _animator.SetFloat(ATTACK_SPEED_VAR, value);
+    }
 }

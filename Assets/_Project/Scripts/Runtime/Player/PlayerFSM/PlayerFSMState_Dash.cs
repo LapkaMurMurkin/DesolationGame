@@ -15,8 +15,8 @@ public class PlayerFSMState_Dash : PlayerFSMState
 
     public PlayerFSMState_Dash(PlayerFSM FSM) : base(FSM)
     {
-        _dashRange = 5f;
-        _dashDuration = 0.5f;
+        _dashRange = _FSM.Model.PlayerDefaultInitialization.DashRange;
+        _dashDuration = _FSM.Model.PlayerDefaultInitialization.DashDuration;
     }
 
     public override void Enter()

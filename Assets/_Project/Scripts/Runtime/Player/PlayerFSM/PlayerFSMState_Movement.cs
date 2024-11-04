@@ -19,7 +19,7 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _movementInput = new Vector2();
         _movementDirection = new Vector3();
         _movementSpeed = _FSM.Model.Stats[StatID.MOVEMENT_SPEED].ModifiedValue.CurrentValue;
-        _movementStartDuration = 0.1f;
+        _movementStartDuration = _FSM.Model.PlayerDefaultInitialization.MovementAccelerationDuration;
     }
 
     public override void Enter()
@@ -46,5 +46,4 @@ public class PlayerFSMState_Movement : PlayerFSMState
         _movementDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
         _transformController.TargetVelocityVector = _movementDirection * _movementSpeed;
     }
-
 }

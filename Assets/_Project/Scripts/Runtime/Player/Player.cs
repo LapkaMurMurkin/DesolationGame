@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private PlayerFSM _FSM;
     private PlayerInputListener _playerInputListener;
     [SerializeField]
-    public PlayerStatsInitialization _playerStatsInitialization;
+    private PlayerDefaultInitialization _playerDefaultInitialization;
     [SerializeField]
     private AgentDeath _agetDeathTest;
 
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         _model = new PlayerModel();
-        _model.Initialize(_playerStatsInitialization);
+        _model.Initialize(_playerDefaultInitialization);
         _view = GetComponent<PlayerView>();
         _view.Initialize(_model);
 

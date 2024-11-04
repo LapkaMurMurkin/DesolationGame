@@ -12,6 +12,8 @@ public class PlayerModel
     public ReadOnlyDictionary<StatID, Stat> Stats;
     public ReadOnlyArray<int> LevelsXP;
 
+    public PlayerDefaultInitialization PlayerDefaultInitialization;
+
     public PlayerModel()
     {
         Stat level = new Stat(1);
@@ -57,16 +59,18 @@ public class PlayerModel
         });
     }
 
-    public void Initialize(PlayerStatsInitialization initStats)
+    public void Initialize(PlayerDefaultInitialization initStats)
     {
+        PlayerDefaultInitialization = initStats;
+
         Stats[StatID.LEVEL].BaseValue.Value = initStats.Level;
         Stats[StatID.EXPERIENCE].BaseValue.Value = initStats.Experience;
         Stats[StatID.MAX_HEALTH].BaseValue.Value = initStats.Health;
         Stats[StatID.CURRENT_HEALTH].BaseValue.Value = initStats.Health;
         Stats[StatID.MAX_MANA].BaseValue.Value = initStats.Mana;
         Stats[StatID.CURRENT_MANA].BaseValue.Value = initStats.Mana;
-        Stats[StatID.BASE_DAMAGE].BaseValue.Value = initStats.BaseDamage;
-        Stats[StatID.ATTACK_SPEED].BaseValue.Value = initStats.AttackSpeed;
+        Stats[StatID.BASE_DAMAGE].BaseValue.Value = initStats.BaseAttackDamage;
+        Stats[StatID.ATTACK_SPEED].BaseValue.Value = initStats.BaseAttackSpeed;
         Stats[StatID.MOVEMENT_SPEED].BaseValue.Value = initStats.MovementSpeed;
     }
 

@@ -5,6 +5,7 @@ using R3;
 using R3.Triggers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerTransformController
@@ -15,6 +16,8 @@ public class PlayerTransformController
     public float VelocityTransitionDelta;
     public float VelocityTransitionDuration;
 
+    public NavMeshAgent NavMeshAgent;
+
     public ReadOnlyReactiveProperty<Vector3> CurrentVelocityVectorView;
 
     public PlayerTransformController(Transform playerTransform)
@@ -24,12 +27,15 @@ public class PlayerTransformController
         TargetVelocityVector = new Vector3();
         VelocityTransitionDelta = 0;
         VelocityTransitionDuration = 0;
+
+        NavMeshAgent = playerTransform.GetComponent<NavMeshAgent>();
     }
 
     public void Update()
     {
         CurrentVelocityVector = Vector3.MoveTowards(CurrentVelocityVector, TargetVelocityVector, VelocityTransitionDelta / VelocityTransitionDuration * Time.deltaTime);
-        PlayerTransform.position += CurrentVelocityVector * Time.deltaTime;
+        //PlayerTransform.position += CurrentVelocityVector * Time.deltaTime;
+        NavMeshAgent.Move(CurrentVelocityVector * Time.deltaTime);
         PlayerTransform.rotation = Quaternion.LookRotation(CurrentVelocityVector != Vector3.zero ? CurrentVelocityVector : PlayerTransform.forward);
     }
 

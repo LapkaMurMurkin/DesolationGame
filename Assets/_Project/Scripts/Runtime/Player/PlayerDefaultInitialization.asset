@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 741efa4d14421ff4ca73aad5d359d007, type: 3}
-  m_Name: PlayerStatsInitialization
+  m_Name: PlayerDefaultInitialization
   m_EditorClassIdentifier: 
   Level: 1
   Experience: 3
   Health: 57
   Mana: 30
-  BaseDamage: 0
-  AttackSpeed: 0.71
   MovementSpeed: 5
+  MovementAccelerationDuration: 0.1
+  MovementDecelerationDuration: 0.3
+  DashRange: 5
+  DashDuration: 0.5
+  BaseAttackDamage: 10
+  BaseAttackSpeed: 2
+  BaseAttackStepRange: 1.25
+  BaseAttackStepDuration: 0.4
