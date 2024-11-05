@@ -19,9 +19,9 @@ public partial class PerformForwardAttackAction : Action
     {
         if(Physics.Raycast(Agent.Value.transform.position, Agent.Value.transform.forward * RayDistance, out _raycastHit))
         {
-            if(_raycastHit.transform.TryGetComponent(out PlayerDamageableComponent playerDamageableComponent))
+            if(_raycastHit.transform.TryGetComponent(out Player playerDamageableComponent))
             {
-                playerDamageableComponent.ApplyDamage(Damage);
+                playerDamageableComponent.ApplyDamage(Damage.Value);
             }
         }
         return Status.Success;

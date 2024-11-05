@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
         _agetDeathTest.Event += (gameObject) =>
         {
-            Debug.Log("death");
+            Debug.Log($"{gameObject} death. Gained 100 XP");
             _model.Stats[StatID.EXPERIENCE].BaseValue.Value += 100;
         };
     }
@@ -52,8 +52,9 @@ public class Player : MonoBehaviour
         _FSM.Update();
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(float damage)
     {
         _model.Stats[StatID.CURRENT_HEALTH].BaseValue.Value -= damage;
+        Debug.Log($"Player - damage: {damage}");
     }
 }

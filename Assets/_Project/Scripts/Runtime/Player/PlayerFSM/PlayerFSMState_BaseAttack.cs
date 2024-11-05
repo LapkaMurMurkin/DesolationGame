@@ -25,7 +25,7 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     public override void Enter()
     {
-        _FSM.Player.GetComponentInChildren<PlayerBaseAttackCollider>(true).onAgentDamageableCollision += DealDamage;
+        _FSM.Player.GetComponentInChildren<PlayerWeaponCollider>(true).onAgentDamageableCollision += DealDamage;
         _FSM.AnimatorEvents.OnAwaitCombo += AwaitCombo;
         _FSM.AnimatorEvents.OnAnimationEnd += EndCombo;
 
@@ -34,7 +34,7 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     public override void Exit()
     {
-        _FSM.Player.GetComponentInChildren<PlayerBaseAttackCollider>(true).onAgentDamageableCollision -= DealDamage;
+        _FSM.Player.GetComponentInChildren<PlayerWeaponCollider>(true).onAgentDamageableCollision -= DealDamage;
         _FSM.AnimatorEvents.OnAwaitCombo -= AwaitCombo;
         _FSM.AnimatorEvents.OnAnimationEnd -= EndCombo;
     }
@@ -54,8 +54,8 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     private void DealDamage(AgentDamageable agentDamageable)
     {
-        agentDamageable.ApplyDamage(69);
-        Debug.Log(agentDamageable + " agentDamageable damage 69");
+        agentDamageable.ApplyDamage((int)_attackDamage);
+        Debug.Log($"Enemy {agentDamageable.gameObject} - damage: {_attackDamage}");
         //Debug.Log($"Dummy damage {_animatorController.BaseAttackComboSequenceIndex * _attackDamage}");
     }
 
