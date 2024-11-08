@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
@@ -11,7 +12,7 @@ public class SpawnZone : MonoBehaviour
 
     public void Awake()
     {
-        MaxCount = 5;
+        MaxCount = 1;
         CurrentCount = SpawnedObjects.Count;
         _colliderRadius = Prefab.GetComponent<CapsuleCollider>().radius;
     }
@@ -24,7 +25,7 @@ public class SpawnZone : MonoBehaviour
         SpawnPrefab();
     }
 
-    private void SpawnPrefab()
+    private async void SpawnPrefab()
     {
         if (CurrentCount < MaxCount)
         {
@@ -34,7 +35,11 @@ public class SpawnZone : MonoBehaviour
             rotation.SetLookRotation(Vector3.left);
             if (Physics.CheckSphere(position, _colliderRadius) is false)
             {
-                SpawnedObjects.Add(Instantiate(Prefab, position, rotation));
+                var item = Instantiate(Prefab, position, rotation);
+                await Task.Delay(1000);
+                item.GetComponent<AgentStart>().Init(transform);
+
+                SpawnedObjects.Add(item);
             }
         }
     }

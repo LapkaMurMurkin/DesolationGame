@@ -3,12 +3,14 @@ using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
+using UnityEngine.AI;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "Forward Navigate", story: "[Agent] navigates Forward at [distance]", category: "Action", id: "18d7f5b8b87e981f9e1722edb8d54ee5")]
 public partial class ForwardNavigateAction : Action
 {
-    [SerializeReference] public BlackboardVariable<Transform> Agent;
+    [SerializeReference] public BlackboardVariable<NavMeshAgent> Agent;
+    [SerializeReference] public BlackboardVariable<Transform> Self;
     [SerializeReference] public BlackboardVariable<float> Distance;
     [SerializeReference] public BlackboardVariable<float> Speed = new BlackboardVariable<float>(1.0f);
     [SerializeReference] public BlackboardVariable<float> RayDistance = new BlackboardVariable<float>(1.0f);
@@ -18,7 +20,8 @@ public partial class ForwardNavigateAction : Action
 
     protected override Status OnStart()
     {
-        _targetPosition = Agent.Value.position + (Agent.Value.forward * Distance);
+        _targetPosition = Self.Value.position + (Self.Value.forward * Distance);
+        Agent.Value.speed = Speed;
 
         return Status.Running;
     }
@@ -30,20 +33,21 @@ public partial class ForwardNavigateAction : Action
             return Status.Failure;
         }
 
-        Vector3 agentPosition = Agent.Value.transform.position;
+        Vector3 agentPosition = Self.Value.position;
         Vector3 toDestination = _targetPosition - agentPosition;
         toDestination.Normalize();
 
         agentPosition += toDestination * (Speed * Time.deltaTime);
-        Agent.Value.transform.position = agentPosition;
+        // Agent.Value.transform.position = agentPosition;
+        Agent.Value.SetDestination(agentPosition);
 
-        if(Physics.Raycast(Agent.Value.transform.position, Agent.Value.forward, out _raycastHit, RayDistance))
+        if(Physics.Raycast(Self.Value.position, Self.Value.forward, out _raycastHit, RayDistance))
         {
             if(_raycastHit.transform.GetComponent<Player>() != null)
                 return Status.Success;
         }
 
-        if((Agent.Value.transform.position - _targetPosition).magnitude >= 0.1f)
+        if((Self.Value.position - _targetPosition).magnitude >= 0.1f)
             return Status.Running;
 
         return Status.Success;
