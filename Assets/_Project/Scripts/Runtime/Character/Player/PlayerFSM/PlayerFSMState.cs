@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class PlayerFSMState : FSMState
 {
     protected PlayerFSM _FSM;
-    protected PlayerTransformController _transformController;
+    protected TransformController _transformController;
     protected PlayerAnimatorController _animatorController;
 
     public PlayerFSMState(PlayerFSM FSM) : base()

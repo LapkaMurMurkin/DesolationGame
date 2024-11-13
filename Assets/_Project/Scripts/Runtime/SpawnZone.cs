@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Behavior;
 using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
@@ -21,22 +22,22 @@ public class SpawnZone : MonoBehaviour
         SpawnedObjects.RemoveAll(x => x == null);
         CurrentCount = SpawnedObjects.Count;
 
-        SpawnPrefab();
+        if (CurrentCount < MaxCount)
+        {
+            SpawnPrefab();
+        }
     }
 
     private void SpawnPrefab()
     {
-        if (CurrentCount < MaxCount)
-        {
-            Vector3 position = transform.position + (Random.onUnitSphere * transform.lossyScale.x) / 2;
-            position.y = 1;
-            Quaternion rotation = new Quaternion();
-            rotation.SetLookRotation(Vector3.left);
-            if (Physics.CheckSphere(position, _colliderRadius) is false)
-            {
-                SpawnedObjects.Add(Instantiate(Prefab, position, rotation));
-            }
-        }
+        Vector3 position = transform.position + Random.onUnitSphere * transform.localScale.x;
+        position.y = 0;
+        Quaternion rotation = new Quaternion();
+        rotation.SetLookRotation(Vector3.left);
+
+        GameObject prefab = Instantiate(Prefab, position, rotation);
+        prefab.GetComponent<Enemy>().Initialize(transform);
+        SpawnedObjects.Add(prefab);
     }
 
     private void OnDrawGizmos()

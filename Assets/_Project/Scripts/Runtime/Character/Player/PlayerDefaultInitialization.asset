@@ -22,6 +22,6 @@ MonoBehaviour:
   DashRange: 5
   DashDuration: 0.5
   BaseAttackDamage: 10
-  BaseAttackSpeed: 2
+  BaseAttackSpeed: 4
   BaseAttackStepRange: 1.25
   BaseAttackStepDuration: 0.4

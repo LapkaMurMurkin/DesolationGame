@@ -25,7 +25,7 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     public override void Enter()
     {
-        _FSM.Player.GetComponentInChildren<PlayerWeaponCollider>(true).onAgentDamageableCollision += DealDamage;
+        _FSM.Player.GetComponentInChildren<PlayerWeapon>(true).onEnemyCollision += DealDamage;
         _FSM.AnimatorEvents.OnAwaitCombo += AwaitCombo;
         _FSM.AnimatorEvents.OnAnimationEnd += EndCombo;
 
@@ -34,7 +34,7 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
     public override void Exit()
     {
-        _FSM.Player.GetComponentInChildren<PlayerWeaponCollider>(true).onAgentDamageableCollision -= DealDamage;
+        _FSM.Player.GetComponentInChildren<PlayerWeapon>(true).onEnemyCollision -= DealDamage;
         _FSM.AnimatorEvents.OnAwaitCombo -= AwaitCombo;
         _FSM.AnimatorEvents.OnAnimationEnd -= EndCombo;
     }
@@ -45,18 +45,18 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
 
         Vector2 movementInput = _movement.ReadValue<Vector2>();
         Vector3 attackDirection = new Vector3(movementInput.x, 0, movementInput.y);
-        if (attackDirection == Vector3.zero) attackDirection = _transformController.PlayerTransform.forward;
-        _transformController.PlayerTransform.rotation = Quaternion.LookRotation(attackDirection);
+        if (attackDirection == Vector3.zero) attackDirection = _transformController.ObjectTransform.forward;
+        _transformController.ObjectTransform.rotation = Quaternion.LookRotation(attackDirection);
 
         _transformController.CurrentVelocityVector = Vector3.zero;
-        _transformController.AddAcceleration(_stepRange, _stepDuration);
+        _transformController.AddStraightAcceleration(_stepRange, _stepDuration);
     }
 
-    private void DealDamage(AgentDamageable agentDamageable)
+    private void DealDamage(Enemy enemy)
     {
-        agentDamageable.ApplyDamage((int)_attackDamage);
-        Debug.Log($"Enemy {agentDamageable.gameObject} - damage: {_attackDamage}");
-        //Debug.Log($"Dummy damage {_animatorController.BaseAttackComboSequenceIndex * _attackDamage}");
+        Object.Destroy(enemy.gameObject);
+        _FSM.Model.Stats[StatID.EXPERIENCE].BaseValue.Value += 50;
+        Debug.Log("Kill +XP");
     }
 
     private void AwaitCombo()

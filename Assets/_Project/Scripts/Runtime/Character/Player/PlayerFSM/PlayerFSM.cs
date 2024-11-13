@@ -10,26 +10,24 @@ public class PlayerFSM : FSM
 {
     public Player Player;
     public PlayerModel Model;
-    public PlayerTransformController TransformController;
+    public TransformController TransformController;
     public Animator Animator;
     public PlayerAnimatorController AnimatorController;
     public PlayerAnimatorEvents AnimatorEvents;
-    //public Raycaster Raycaster;
 
-    public PlayerFSM(Player player, PlayerModel playerModel)
+    public PlayerFSM(Player player, PlayerModel model)
     {
         Player = player;
-        Model = playerModel;
-        TransformController = new PlayerTransformController(player.transform);
+        Model = model;
+        TransformController = new TransformController(player.transform);
         Animator = Player.GetComponentInChildren<Animator>();
         AnimatorController = new PlayerAnimatorController(Animator);
         AnimatorEvents = Player.GetComponentInChildren<PlayerAnimatorEvents>();
-        //Raycaster = ServiceLocator.Get<Raycaster>();
     }
 
     public override void Update()
     {
         base.Update();
-        TransformController.Update();
+        TransformController.MoveAlongVelocityVector();
     }
 }

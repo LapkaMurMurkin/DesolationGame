@@ -449,11 +449,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8582310199191742005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ba253eadac6f442a35fc5ba6b4aa72, type: 3}
+  m_Script: {fileID: 11500000, guid: 88de0095878b9c648b838798b60bf8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDefaultInitialization: {fileID: 11400000, guid: 097a26b2dacad4442ae8ddd39e95d1d4, type: 2}
-  _agetDeathTest: {fileID: 11400000, guid: 12a4a72ed8671854ea08e7f70acfe35e, type: 2}
+  _playerDefaultInitialization: {fileID: 0}
+  _agetDeathTest: {fileID: 0}
   isInvulnerable: 0
 --- !u!114 &3289386491142946831
 MonoBehaviour:
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8582310199191742005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5905f1cf9c0e2e418524d11e8d98ad0, type: 3}
+  m_Script: {fileID: 11500000, guid: 42fa3f46d1cabe24c84ddaf128c4e367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _level: {fileID: 0}

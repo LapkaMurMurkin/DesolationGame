@@ -44,19 +44,13 @@ public class PlayerModel
         int[] levelsXP = {
             100,
             200,
-            300
+            300,
+            999999999
         };
 
         LevelsXP = new ReadOnlyArray<int>(levelsXP);
 
         experience.BaseValue.Subscribe(value => level.BaseValue.Value = CheckLevelUp((int)value, levelsXP));
-        currentHealth.BaseValue.Subscribe(value =>
-        {
-            if (value <= 0)
-            {
-                Debug.Log("Player Death");
-            }
-        });
     }
 
     public void Initialize(PlayerDefaultInitialization initStats)

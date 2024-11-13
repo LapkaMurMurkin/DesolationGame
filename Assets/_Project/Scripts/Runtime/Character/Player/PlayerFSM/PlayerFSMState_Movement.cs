@@ -44,6 +44,7 @@ public class PlayerFSMState_Movement : PlayerFSMState
         }
 
         _movementDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
+        //_transformController.NavMeshAgent.SetDestination(_transformController.ObjectTransform.position + _movementDirection);
         _transformController.TargetVelocityVector = _movementDirection * _movementSpeed;
     }
 }

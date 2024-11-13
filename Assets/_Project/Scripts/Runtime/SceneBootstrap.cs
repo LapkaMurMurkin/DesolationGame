@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SceneBootstrap : MonoBehaviour
@@ -7,7 +9,7 @@ public class SceneBootstrap : MonoBehaviour
     private ActionMap _actionMap;
 
     private Player _player;
-    private PlayerCamera _playerCamera;
+    private TopDownCamera _playerCamera;
     private Raycaster _raycaster;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -22,13 +24,15 @@ public class SceneBootstrap : MonoBehaviour
         _player.Initialize();
         ServiceLocator.Register<Player>(_player);
 
-        _playerCamera = FindFirstObjectByType<PlayerCamera>();
+        _playerCamera = FindFirstObjectByType<TopDownCamera>();
         _playerCamera.Initialize(_player);
-        ServiceLocator.Register<PlayerCamera>(_playerCamera);
+        ServiceLocator.Register<TopDownCamera>(_playerCamera);
 
         _raycaster = new Raycaster(_playerCamera.GetComponent<Camera>());
         ServiceLocator.Register<Raycaster>(_raycaster);
 
-
+/*         List<Enemy> enemys = FindObjectsByType<Enemy>(FindObjectsSortMode.None).ToList();
+        foreach (Enemy enemy in enemys)
+            enemy.Initialize(); */
     }
 }
