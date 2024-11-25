@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.Behavior;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
@@ -12,7 +12,7 @@ public class SpawnZone : MonoBehaviour
 
     public void Awake()
     {
-        MaxCount = 5;
+        MaxCount = 1;
         CurrentCount = SpawnedObjects.Count;
         _colliderRadius = Prefab.GetComponent<CapsuleCollider>().radius;
     }
@@ -22,22 +22,26 @@ public class SpawnZone : MonoBehaviour
         SpawnedObjects.RemoveAll(x => x == null);
         CurrentCount = SpawnedObjects.Count;
 
-        if (CurrentCount < MaxCount)
-        {
-            SpawnPrefab();
-        }
+        SpawnPrefab();
     }
 
-    private void SpawnPrefab()
+    private async void SpawnPrefab()
     {
-        Vector3 position = transform.position + Random.onUnitSphere * transform.localScale.x;
-        position.y = 0;
-        Quaternion rotation = new Quaternion();
-        rotation.SetLookRotation(Vector3.left);
+        if (CurrentCount < MaxCount)
+        {
+            Vector3 position = transform.position + (Random.onUnitSphere * transform.lossyScale.x) / 2;
+            position.y = 1;
+            Quaternion rotation = new Quaternion();
+            rotation.SetLookRotation(Vector3.left);
+            if (Physics.CheckSphere(position, _colliderRadius) is false)
+            {
+                var item = Instantiate(Prefab, position, rotation);
+                await Task.Delay(1000);
+                item.GetComponent<AgentStart>().Init(transform);
 
-        GameObject prefab = Instantiate(Prefab, position, rotation);
-        prefab.GetComponent<Enemy>().Initialize(transform);
-        SpawnedObjects.Add(prefab);
+                SpawnedObjects.Add(item);
+            }
+        }
     }
 
     private void OnDrawGizmos()
