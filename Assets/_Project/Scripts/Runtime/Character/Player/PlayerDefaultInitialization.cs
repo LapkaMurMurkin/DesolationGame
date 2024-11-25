@@ -19,7 +19,7 @@ public class PlayerDefaultInitialization : ScriptableObject
     public float DashDuration;
 
     [Header("BaseAttack")]
-    public float BaseAttackDamage;
+    public int BaseAttackDamage;
     public float BaseAttackSpeed;
     public float BaseAttackStepRange;
     public float BaseAttackStepDuration;

@@ -15,9 +15,9 @@ public class Stat
     private readonly ObservableList<StatModifier> _statModifiers;
     public readonly IReadOnlyObservableList<StatModifier> StatModifiers;
 
-    public Stat(float baseValue)
+    public Stat(float initializeValue)
     {
-        BaseValue = new ReactiveProperty<float>(baseValue);
+        BaseValue = new ReactiveProperty<float>(initializeValue);
         _statModifiers = new ObservableList<StatModifier>();
         StatModifiers = _statModifiers;
 

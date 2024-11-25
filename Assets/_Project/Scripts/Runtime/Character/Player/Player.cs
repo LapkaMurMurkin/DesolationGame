@@ -48,10 +48,19 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(float damage)
     {
-        _model.Stats[StatID.CURRENT_HEALTH].BaseValue.Value -= damage;
+        _model.CurrentHealth.Value -= (int)damage;
         Debug.Log($"Player - damage: {damage}");
 
-        if (_model.Stats[StatID.CURRENT_HEALTH].BaseValue.Value <= 0)
+        if (_model.CurrentHealth.Value <= 0 && _FSM.CurrentState is not PlayerFSMState_Death)
             _FSM.SwitchStateTo<PlayerFSMState_Death>();
+    }
+
+    public void UsePotion()
+    {
+        if (_model.CurrentPotionCharges.Value > 0)
+        {
+            _model.CurrentPotionCharges.Value--;
+            _model.CurrentHealth.Value += (int)(_model.MaxHealth.BaseValue.Value * 0.2f);
+        }
     }
 }

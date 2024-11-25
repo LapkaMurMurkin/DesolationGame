@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StatModifier
 {
-    public readonly int Value;
+    public readonly float Value;
     public readonly StatModifierType Type;
 
-    public StatModifier(int value, StatModifierType type)
+    public StatModifier(float value, StatModifierType type)
     {
         Value = value;
         Type = type;

@@ -55,7 +55,7 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
     private void DealDamage(Enemy enemy)
     {
         Object.Destroy(enemy.gameObject);
-        _FSM.Model.Stats[StatID.EXPERIENCE].BaseValue.Value += 50;
+        _FSM.Model.Experience.Value += 50;
         Debug.Log("Kill +XP");
     }
 
