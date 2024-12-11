@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-<<<<<<< Updated upstream
 public class PlayerWeapon : MonoBehaviour
 {
     public Action<Enemy> onEnemyCollision;
@@ -50,20 +49,4 @@ public class PlayerWeapon : MonoBehaviour
 
             //Debug.Log(other.gameObject + " trigger");
         } */
-=======
-public class PlayerWeaponCollider : MonoBehaviour
-{
-    public Action<Dummy> onDummyCollision;
-    public Action<AgentDamageable> onAgentDamageableCollision;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Dummy dummy = collision.gameObject.GetComponent<Dummy>();
-        AgentDamageable agentDamageable = collision.gameObject.GetComponent<AgentDamageable>();
-
-        if (dummy is not null)
-            //onDummyCollision.Invoke(dummy);
-            onAgentDamageableCollision.Invoke(agentDamageable);
-    }
->>>>>>> Stashed changes
 }

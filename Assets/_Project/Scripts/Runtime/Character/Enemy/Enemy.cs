@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 using System;
 using R3;
 using R3.Triggers;
@@ -21,39 +20,12 @@ public class Enemy : MonoBehaviour
         _FSM.InitializeState(new EnemyFSMState_Aggro(_FSM));
 
         _FSM.SwitchStateTo<EnemyFSMState_Patrol>();
-=======
-using UnityEngine;
-
-public class Enemy : Character
-{
-    private EnemyModel _model;
-    private EnemyView _view;
-
-    private EnemyFSM _FSM;
-
-    public void Initialize()
-    {
-        _model = new EnemyModel();
-        //_model.Initialize(_playerStatsInitialization);
-        _view = GetComponent<EnemyView>();
-        //_view.Initialize(_model);
-
-        _FSM = new EnemyFSM(this, _model);
-/*         _FSM.InitializeState(new PlayerFSMState_Idle(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_Movement(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_Dash(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_BaseAttack(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_BaseAttackAwaitCombo(_FSM));
-        _FSM.InitializeState(new PlayerFSMState_SwingAttack(_FSM));
-        _FSM.SwitchStateTo<PlayerFSMState_Idle>(); */
->>>>>>> Stashed changes
     }
 
     private void Update()
     {
         _FSM.Update();
     }
-<<<<<<< Updated upstream
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -73,6 +45,4 @@ public class Enemy : Character
                     Debug.Log("Enemy killed");
                 } */
     }
-=======
->>>>>>> Stashed changes
 }

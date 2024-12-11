@@ -1,5 +1,4 @@
 using UnityEngine;
-<<<<<<< Updated upstream
 using UnityEngine.UIElements.Experimental;
 using R3;
 
@@ -19,10 +18,4 @@ public abstract class Character : MonoBehaviour
             //_model.Stats[StatID.CURRENT_HEALTH].BaseValue.Value -= damage;
             Debug.Log($"Player - damage: {damage}");
         } */
-=======
-
-public class Character : MonoBehaviour
-{
-
->>>>>>> Stashed changes
 }
