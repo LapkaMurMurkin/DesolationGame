@@ -14,7 +14,11 @@ public class PlayerFSMState_Idle : PlayerFSMState
 
     public PlayerFSMState_Idle(PlayerFSM FSM) : base(FSM)
     {
+<<<<<<< Updated upstream
         _movementStopDuration = _FSM.Model.PlayerDefaultInitialization.MovementDecelerationDuration;
+=======
+        _movementStopDuration = 0.3f;
+>>>>>>> Stashed changes
 
         _idleAnimations = new List<string>{
             {PlayerAnimatorController.IDLE_ANIM_NAME},

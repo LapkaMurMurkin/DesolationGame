@@ -1,6 +1,10 @@
 using UnityEngine;
 
+<<<<<<< Updated upstream
 public class EnemyModel
+=======
+public class EnemyModel : MonoBehaviour
+>>>>>>> Stashed changes
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

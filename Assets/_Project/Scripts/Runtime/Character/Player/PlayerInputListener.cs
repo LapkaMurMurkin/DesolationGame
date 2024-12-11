@@ -12,7 +12,10 @@ public class PlayerInputListener
     private InputAction _dash;
     private InputAction _attack;
     private InputAction _skill_1;
+<<<<<<< Updated upstream
     private InputAction _potion;
+=======
+>>>>>>> Stashed changes
 
     private Dictionary<Type, HashSet<Type>> _transitionToFromAccess;
 
@@ -24,7 +27,10 @@ public class PlayerInputListener
         _dash = _actionMap.Player.Dash;
         _attack = _actionMap.Player.Attack;
         _skill_1 = _actionMap.Player.Skill_1;
+<<<<<<< Updated upstream
         _potion = _actionMap.Player.Potion;
+=======
+>>>>>>> Stashed changes
 
         _transitionToFromAccess = new Dictionary<Type, HashSet<Type>>();
 
@@ -44,7 +50,10 @@ public class PlayerInputListener
         _dash.performed += Dash;
         _attack.performed += Attack;
         _skill_1.performed += Skill_1;
+<<<<<<< Updated upstream
         _potion.performed += UsePotion;
+=======
+>>>>>>> Stashed changes
     }
 
     public void Disable()
@@ -53,7 +62,10 @@ public class PlayerInputListener
         _dash.performed -= Dash;
         _attack.performed -= Attack;
         _skill_1.performed -= Skill_1;
+<<<<<<< Updated upstream
         _potion.performed -= UsePotion;
+=======
+>>>>>>> Stashed changes
     }
 
     private void Move(InputAction.CallbackContext context)
@@ -84,10 +96,13 @@ public class PlayerInputListener
         if (_FSM.CurrentState is not PlayerFSMState_SwingAttack)
             _FSM.SwitchStateTo<PlayerFSMState_SwingAttack>();
     }
+<<<<<<< Updated upstream
 
     private void UsePotion(InputAction.CallbackContext context)
     {
         _FSM.Player.UsePotion();
         //_FSM.Model.Stats[StatID.CURRENT_HEALTH].BaseValue
     }
+=======
+>>>>>>> Stashed changes
 }
