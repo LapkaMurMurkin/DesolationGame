@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 5676740041761685063}
   - component: {fileID: 3972276114321186417}
   - component: {fileID: 6920538879103392851}
-  - component: {fileID: 8790026646700142267}
   m_Layer: 15
   m_Name: BaseAttackCollider
   m_TagString: Untagged
@@ -391,18 +390,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &8790026646700142267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6566152579742155378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9850cbdb94d5ff46993c8dfca4f69d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8582310199191742005
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDefaultInitialization: {fileID: 0}
-  _agetDeathTest: {fileID: 0}
   isInvulnerable: 0
 --- !u!114 &3289386491142946831
 MonoBehaviour:
@@ -471,6 +457,7 @@ MonoBehaviour:
   _experience: {fileID: 0}
   _health: {fileID: 0}
   _mana: {fileID: 0}
+  _potion: {fileID: 0}
   _speed: {fileID: 0}
   _damage: {fileID: 0}
   _attackSpeed: {fileID: 0}

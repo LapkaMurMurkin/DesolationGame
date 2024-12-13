@@ -28,6 +28,6 @@ public class PlayerFSM : FSM
     public override void Update()
     {
         base.Update();
-        TransformController.MoveAlongVelocityVector();
+        TransformController.Update();
     }
 }

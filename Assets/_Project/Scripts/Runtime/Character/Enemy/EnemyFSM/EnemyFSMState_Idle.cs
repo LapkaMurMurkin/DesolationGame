@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class EnemyFSMState_Idle : EnemyFSMState
 {
-    private float _stopTime;
+    private float _idleTime;
     private float _timer;
 
     public EnemyFSMState_Idle(EnemyFSM FSM) : base(FSM)
     {
     }
 
-
     public override void Enter()
     {
-        _stopTime = 3f;
+        _animatorController.SwitchAnimationTo(EnemyAnimatorController.IDLE_ANIM_NAME);
+        _idleTime = 3f;
         _timer = 0;
     }
 
@@ -24,7 +24,7 @@ public class EnemyFSMState_Idle : EnemyFSMState
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= _stopTime)
+        if (_timer >= _idleTime)
             _FSM.SwitchStateTo<EnemyFSMState_Patrol>();
     }
 }

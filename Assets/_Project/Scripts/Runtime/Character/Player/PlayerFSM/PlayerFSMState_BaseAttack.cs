@@ -49,14 +49,15 @@ public class PlayerFSMState_BaseAttack : PlayerFSMState
         _transformController.ObjectTransform.rotation = Quaternion.LookRotation(attackDirection);
 
         _transformController.CurrentVelocityVector = Vector3.zero;
-        _transformController.AddStraightAcceleration(_stepRange, _stepDuration);
+        _transformController.AddAcceleration(_stepRange, _stepDuration);
     }
 
     private void DealDamage(Enemy enemy)
     {
-        Object.Destroy(enemy.gameObject);
+        enemy.ApplyDamage(10);
+/*         Object.Destroy(enemy.gameObject);
         _FSM.Model.Experience.Value += 50;
-        Debug.Log("Kill +XP");
+        Debug.Log("Kill +XP"); */
     }
 
     private void AwaitCombo()

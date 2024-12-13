@@ -1,25 +1,34 @@
-using System;
-using R3;
-using R3.Triggers;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
-    private EnemyModel _enemyModel;
-    private EnemyFSM _FSM;
+    private EnemyModel _model;
+    private EnemyView _view;
 
-    public static Action<Enemy> OnDeath;
+    private EnemyFSM _FSM;
 
     public void Initialize(Transform spawnZoneTransform)
     {
-        _enemyModel = new EnemyModel();
-        _FSM = new EnemyFSM(this, _enemyModel, spawnZoneTransform);
-        //_FSM.InitializeState(new EnemyFSMState_Idle(_FSM));
+        _model = new EnemyModel();
+        _model.Initialize();
+        _view = GetComponent<EnemyView>();
+        //_view.Initialize(_model);
+
+        _FSM = new EnemyFSM(this, _model);
+        _FSM.SpawnZoneTransform = spawnZoneTransform;
+        _FSM.InitializeState(new EnemyFSMState_Idle(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Patrol(_FSM));
-        _FSM.InitializeState(new EnemyFSMState_Aggro(_FSM));
+        _FSM.InitializeState(new EnemyFSMState_Death(_FSM));
 
         _FSM.SwitchStateTo<EnemyFSMState_Patrol>();
+
+        /*         _FSM.InitializeState(new PlayerFSMState_Idle(_FSM));
+                _FSM.InitializeState(new PlayerFSMState_Movement(_FSM));
+                _FSM.InitializeState(new PlayerFSMState_Dash(_FSM));
+                _FSM.InitializeState(new PlayerFSMState_BaseAttack(_FSM));
+                _FSM.InitializeState(new PlayerFSMState_BaseAttackAwaitCombo(_FSM));
+                _FSM.InitializeState(new PlayerFSMState_SwingAttack(_FSM));
+                _FSM.SwitchStateTo<PlayerFSMState_Idle>(); */
     }
 
     private void Update()
@@ -27,22 +36,12 @@ public class Enemy : MonoBehaviour
         _FSM.Update();
     }
 
-    private void OnTriggerEnter(Collider collider)
+    public void ApplyDamage(float damage)
     {
-        Player player = collider.GetComponent<Player>();
-        //PlayerWeapon playerWeapon = collider.GetComponent<PlayerWeapon>();
+        _model.CurrentHealth.Value -= (int)damage;
+        Debug.Log($"Enemy - damage: {damage}");
 
-        if (player is not null)
-        {
-            Destroy(this.gameObject);
-            player.ApplyDamage(10);
-            Debug.Log("Damage 10!");
-        }
-
-        /*         if(playerWeapon is not null)
-                {
-                    OnDeath!.Invoke(this);
-                    Debug.Log("Enemy killed");
-                } */
+        if (_model.CurrentHealth.Value <= 0 && _FSM.CurrentState is not EnemyFSMState_Death)
+            _FSM.SwitchStateTo<EnemyFSMState_Death>();
     }
 }

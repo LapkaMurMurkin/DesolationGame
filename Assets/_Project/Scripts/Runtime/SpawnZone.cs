@@ -8,13 +8,12 @@ public class SpawnZone : MonoBehaviour
     public List<GameObject> SpawnedObjects;
     public int MaxCount { get; private set; }
     public int CurrentCount { get; private set; }
-    private float _colliderRadius;
+    //private float _colliderRadius;
 
     public void Awake()
     {
-        MaxCount = 1;
+        MaxCount = 3;
         CurrentCount = SpawnedObjects.Count;
-        _colliderRadius = Prefab.GetComponent<CapsuleCollider>().radius;
     }
 
     private void Update()
@@ -25,7 +24,7 @@ public class SpawnZone : MonoBehaviour
         SpawnPrefab();
     }
 
-    private async void SpawnPrefab()
+    private void SpawnPrefab()
     {
         if (CurrentCount < MaxCount)
         {
@@ -33,14 +32,12 @@ public class SpawnZone : MonoBehaviour
             position.y = 1;
             Quaternion rotation = new Quaternion();
             rotation.SetLookRotation(Vector3.left);
-            if (Physics.CheckSphere(position, _colliderRadius) is false)
-            {
-                var item = Instantiate(Prefab, position, rotation);
-                await Task.Delay(1000);
-                item.GetComponent<AgentStart>().Init(transform);
 
-                SpawnedObjects.Add(item);
-            }
+            GameObject spawnedPrefab = Instantiate(Prefab, position, rotation);
+            SpawnedObjects.Add(spawnedPrefab);
+
+            Enemy enemy = spawnedPrefab.GetComponent<Enemy>();
+            enemy.Initialize(transform);
         }
     }
 

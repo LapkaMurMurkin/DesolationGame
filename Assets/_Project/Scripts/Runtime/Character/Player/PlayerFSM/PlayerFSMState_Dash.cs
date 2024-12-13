@@ -24,7 +24,7 @@ public class PlayerFSMState_Dash : PlayerFSMState
         _FSM.Player.isInvulnerable = true;
         _timer = _dashDuration;
         _animatorController.SwitchAnimationTo(PlayerAnimatorController.DASH_ANIM_NAME);
-        _transformController.AddStraightAcceleration(_dashRange, _dashDuration);
+        _transformController.AddAcceleration(_dashRange, _dashDuration);
     }
 
     public override void Exit()
