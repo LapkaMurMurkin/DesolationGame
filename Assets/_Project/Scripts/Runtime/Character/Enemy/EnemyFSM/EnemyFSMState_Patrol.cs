@@ -4,21 +4,37 @@ using UnityEngine.AI;
 
 public class EnemyFSMState_Patrol : EnemyFSMState
 {
-    private Transform _spawnZoneTransform;
-    private float _spawnZoneRadius;
+    private Transform _selfTransform;
+    private Transform _playerTransform;
 
     private float _movementSpeed;
     private float _movementStartDuration;
+
+    private float _idleTime;
+    private float _timer;
+
+    private float _agroRadius;
+
+    private Transform _spawnZoneTransform;
+    private float _spawnZoneRadius;
 
     private NavMeshAgent _navMeshAgent;
 
     public EnemyFSMState_Patrol(EnemyFSM FSM) : base(FSM)
     {
-        _spawnZoneTransform = _FSM.SpawnZoneTransform;
-        _spawnZoneRadius = _spawnZoneTransform.localScale.x;
+        _selfTransform = _FSM.SelfTransform;
+        _playerTransform = _FSM.PlayerTransform;
 
         _movementSpeed = 2;
         _movementStartDuration = 0.5f;
+
+        _idleTime = 3f;
+        _timer = 0;
+
+        _agroRadius = _FSM.AgroRadius;
+
+        _spawnZoneTransform = _FSM.SpawnZoneTransform;
+        _spawnZoneRadius = _spawnZoneTransform.localScale.x;
 
         _navMeshAgent = _FSM.Enemy.GetComponent<NavMeshAgent>();
 
@@ -28,32 +44,30 @@ public class EnemyFSMState_Patrol : EnemyFSMState
 
     public override void Enter()
     {
-        GoToRandomPositionInZone();
+        _animatorController.SwitchAnimationTo(EnemyAnimatorController.IDLE_ANIM_NAME);
     }
 
     public override void Exit()
     {
+        _navMeshAgent.ResetPath();
     }
 
     public override void Update()
     {
         if (_navMeshAgent.hasPath is false)
         {
-            _FSM.SwitchStateTo<EnemyFSMState_Idle>();
+            _animatorController.SwitchAnimationTo(EnemyAnimatorController.IDLE_ANIM_NAME);
+            _timer += Time.deltaTime;
+
+            if (_timer >= _idleTime)
+            {
+                GoToRandomPositionInZone();
+                _timer = 0;
+            }
         }
-        /*         if (_navMeshAgent.hasPath is false)
-                {
-                    _idleTimer -= Time.deltaTime;
-                    if (_idleTimer <= 0)
-                        GoToRandomPositionInZone();
-                }
-                else
-                    _idleTimer = _idleDuration;
 
-                float distanceToPlayer = Vector3.Distance(_playerTransform.position, _enemyTransform.position); */
-
-        /*         if (distanceToPlayer <= _aggroRadius)
-                    _FSM.SwitchStateTo<EnemyFSMState_Aggro>(); */
+        if (Vector3.Distance(_selfTransform.position, _playerTransform.position) < _agroRadius)
+            _FSM.SwitchStateTo<EnemyFSMState_Aggro>();
     }
 
     private void GoToRandomPositionInZone()

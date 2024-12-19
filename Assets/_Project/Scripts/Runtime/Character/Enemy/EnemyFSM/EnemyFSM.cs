@@ -11,6 +11,10 @@ public class EnemyFSM : FSM
 
     public Transform SpawnZoneTransform;
 
+    public Transform SelfTransform;
+    public Transform PlayerTransform;
+    public float AgroRadius;
+
     public EnemyFSM(Enemy enemy, EnemyModel model)
     {
         Enemy = enemy;
@@ -19,11 +23,13 @@ public class EnemyFSM : FSM
         Animator = Enemy.GetComponentInChildren<Animator>();
         AnimatorController = new EnemyAnimatorController(Animator);
         //AnimatorEvents = Player.GetComponentInChildren<PlayerAnimatorEvents>();
+        SelfTransform = Enemy.transform;
+        PlayerTransform = ServiceLocator.Get<Player>().transform;
+        AgroRadius = 8;
     }
 
     public override void Update()
     {
         base.Update();
-        //TransformController.Update();
     }
 }

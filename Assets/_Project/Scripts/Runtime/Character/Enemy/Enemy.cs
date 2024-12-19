@@ -16,19 +16,13 @@ public class Enemy : Character
 
         _FSM = new EnemyFSM(this, _model);
         _FSM.SpawnZoneTransform = spawnZoneTransform;
-        _FSM.InitializeState(new EnemyFSMState_Idle(_FSM));
+        //_FSM.InitializeState(new EnemyFSMState_Idle(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Patrol(_FSM));
+        _FSM.InitializeState(new EnemyFSMState_Aggro(_FSM));
+        _FSM.InitializeState(new EnemyFSMState_Ram(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Death(_FSM));
 
         _FSM.SwitchStateTo<EnemyFSMState_Patrol>();
-
-        /*         _FSM.InitializeState(new PlayerFSMState_Idle(_FSM));
-                _FSM.InitializeState(new PlayerFSMState_Movement(_FSM));
-                _FSM.InitializeState(new PlayerFSMState_Dash(_FSM));
-                _FSM.InitializeState(new PlayerFSMState_BaseAttack(_FSM));
-                _FSM.InitializeState(new PlayerFSMState_BaseAttackAwaitCombo(_FSM));
-                _FSM.InitializeState(new PlayerFSMState_SwingAttack(_FSM));
-                _FSM.SwitchStateTo<PlayerFSMState_Idle>(); */
     }
 
     private void Update()
