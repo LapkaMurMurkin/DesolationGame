@@ -4,10 +4,12 @@ public class EnemyAnimatorController : AnimatorController
 {
     public const string IDLE_ANIM_NAME = "Idle";
     public const string WALK_ANIM_NAME = "Walk";
-    public const string DEATH_ANIM_NAME = "Death";
+    public const string BASE_ATTACK_ANIM_NAME = "Attack";
     public const string RAM_PREPARE_ANIM_NAME = "RamPrepare";
     public const string RAM_ANIM_NAME = "Ram";
-    
+    public const string DEATH_ANIM_NAME = "Death";
+
+
     /*     public const string RUN_ANIM_NAME = "Run";
         public const string DASH_ANIM_NAME = "Dash";
         public const string BASE_ATTACK_1_ANIM_NAME = "BaseAttack_1";

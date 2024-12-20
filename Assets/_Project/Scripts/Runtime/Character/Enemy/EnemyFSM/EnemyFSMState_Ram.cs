@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +15,7 @@ public class EnemyFSMState_Ram : EnemyFSMState
     private float _ramSpeed;
     private float _ramAcceleration;
 
+    private EnemyWeapon _enemyWeapon;
 
     public EnemyFSMState_Ram(EnemyFSM FSM) : base(FSM)
     {
@@ -26,6 +28,8 @@ public class EnemyFSMState_Ram : EnemyFSMState
         _defaultAcceleration = _navMeshAgent.acceleration;
         _ramSpeed = 10;
         _ramAcceleration = _ramSpeed * 10;
+
+        _enemyWeapon = _FSM.Enemy.GetComponentInChildren<EnemyWeapon>(true);
     }
 
     public override void Enter()
@@ -34,12 +38,17 @@ public class EnemyFSMState_Ram : EnemyFSMState
         _navMeshAgent.acceleration = _ramAcceleration;
         _navMeshAgent.SetDestination(_playerTransform.position);
         _animatorController.SwitchAnimationTo(EnemyAnimatorController.RAM_ANIM_NAME);
+
+        _enemyWeapon.OnPlayerCollision += DealDamage;
     }
 
     public override void Exit()
     {
         _navMeshAgent.speed = _defaultSpeed;
         _navMeshAgent.acceleration = _defaultAcceleration;
+        //_navMeshAgent.ResetPath();
+
+        _enemyWeapon.OnPlayerCollision -= DealDamage;
     }
 
     public override void Update()
@@ -48,5 +57,11 @@ public class EnemyFSMState_Ram : EnemyFSMState
         {
             _FSM.SwitchStateTo<EnemyFSMState_Aggro>();
         }
+    }
+
+    private void DealDamage(Player player)
+    {
+        player.ApplyDamage(10);
+        _FSM.SwitchStateTo<EnemyFSMState_BaseAttack>();
     }
 }

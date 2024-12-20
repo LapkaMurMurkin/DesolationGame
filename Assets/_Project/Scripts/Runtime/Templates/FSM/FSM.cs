@@ -37,7 +37,7 @@ public abstract class FSM : IFSM
             CurrentState.Enter();
         }
         else
-            Debug.LogError("This condition is not registered.");
+            Debug.LogError($"Condition {type} is not registered.");
     }
 
     public virtual void Update()

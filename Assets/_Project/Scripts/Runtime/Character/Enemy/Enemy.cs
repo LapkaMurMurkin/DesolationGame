@@ -16,10 +16,10 @@ public class Enemy : Character
 
         _FSM = new EnemyFSM(this, _model);
         _FSM.SpawnZoneTransform = spawnZoneTransform;
-        //_FSM.InitializeState(new EnemyFSMState_Idle(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Patrol(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Aggro(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Ram(_FSM));
+        _FSM.InitializeState(new EnemyFSMState_BaseAttack(_FSM));
         _FSM.InitializeState(new EnemyFSMState_Death(_FSM));
 
         _FSM.SwitchStateTo<EnemyFSMState_Patrol>();
@@ -33,7 +33,6 @@ public class Enemy : Character
     public void ApplyDamage(float damage)
     {
         _model.CurrentHealth.Value -= (int)damage;
-        Debug.Log($"Enemy - damage: {damage}");
 
         if (_model.CurrentHealth.Value <= 0 && _FSM.CurrentState is not EnemyFSMState_Death)
             _FSM.SwitchStateTo<EnemyFSMState_Death>();

@@ -11,11 +11,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (enemy is not null)
         {
-            onEnemyCollision.Invoke(enemy);
-/*             Destroy(enemy.gameObject);
-            Debug.Log("Kill +XP"); */
+            onEnemyCollision?.Invoke(enemy);
         }
-
-        Debug.Log("attack trigger enter");
     }
 }

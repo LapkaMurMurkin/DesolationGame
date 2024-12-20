@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     public void ApplyDamage(float damage)
     {
         _model.CurrentHealth.Value -= (int)damage;
-        Debug.Log($"Player - damage: {damage}");
 
         if (_model.CurrentHealth.Value <= 0 && _FSM.CurrentState is not PlayerFSMState_Death)
             _FSM.SwitchStateTo<PlayerFSMState_Death>();
