@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyFSMState_Ram : EnemyFSMState
 {
+    private Player _player;
+
     private Transform _selfTransform;
     private Transform _playerTransform;
 
@@ -15,10 +17,12 @@ public class EnemyFSMState_Ram : EnemyFSMState
     private float _ramSpeed;
     private float _ramAcceleration;
 
-    private EnemyWeapon _enemyWeapon;
+/*     private EnemyWeapon _enemyWeapon; */
 
     public EnemyFSMState_Ram(EnemyFSM FSM) : base(FSM)
     {
+        _player = ServiceLocator.Get<Player>();
+
         _selfTransform = _FSM.SelfTransform;
         _playerTransform = _FSM.PlayerTransform;
 
@@ -28,8 +32,6 @@ public class EnemyFSMState_Ram : EnemyFSMState
         _defaultAcceleration = _navMeshAgent.acceleration;
         _ramSpeed = 10;
         _ramAcceleration = _ramSpeed * 10;
-
-        _enemyWeapon = _FSM.Enemy.GetComponentInChildren<EnemyWeapon>(true);
     }
 
     public override void Enter()
@@ -38,21 +40,19 @@ public class EnemyFSMState_Ram : EnemyFSMState
         _navMeshAgent.acceleration = _ramAcceleration;
         _navMeshAgent.SetDestination(_playerTransform.position);
         _animatorController.SwitchAnimationTo(EnemyAnimatorController.RAM_ANIM_NAME);
-
-        _enemyWeapon.OnPlayerCollision += DealDamage;
     }
 
     public override void Exit()
     {
         _navMeshAgent.speed = _defaultSpeed;
         _navMeshAgent.acceleration = _defaultAcceleration;
-        //_navMeshAgent.ResetPath();
-
-        _enemyWeapon.OnPlayerCollision -= DealDamage;
     }
 
     public override void Update()
     {
+        if (Vector3.Distance(_selfTransform.position, _playerTransform.position) < 2)
+            DealDamage(_player);
+
         if (_navMeshAgent.hasPath is false)
         {
             _FSM.SwitchStateTo<EnemyFSMState_Aggro>();
@@ -62,6 +62,8 @@ public class EnemyFSMState_Ram : EnemyFSMState
     private void DealDamage(Player player)
     {
         player.ApplyDamage(10);
+        _navMeshAgent.ResetPath();
+        _navMeshAgent.velocity = Vector3.zero;
         _FSM.SwitchStateTo<EnemyFSMState_BaseAttack>();
     }
 }

@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
             _FSM.SwitchStateTo<PlayerFSMState_Death>();
     }
 
+    public void ApplyVelocity(float velocity, Vector3 direction)
+    {
+
+    }
+
     public void UsePotion()
     {
         if (_model.CurrentPotionCharges.Value > 0)

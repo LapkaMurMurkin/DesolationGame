@@ -15,6 +15,5 @@ public class EnemyWeapon : MonoBehaviour
         }
 
         UnityEngine.Debug.Log(collider.gameObject.name);
-
     }
 }

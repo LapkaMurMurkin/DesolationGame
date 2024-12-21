@@ -307,6 +307,14 @@ PrefabInstance:
       value: -6.3970413
       objectReference: {fileID: 0}
     - target: {fileID: -1803093655570648152, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1803093655570648152, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.235
+      objectReference: {fileID: 0}
+    - target: {fileID: -1803093655570648152, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -89.98021
       objectReference: {fileID: 0}
@@ -410,6 +418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.7390603e-11
       objectReference: {fileID: 0}
+    - target: {fileID: 1729414021891006144, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.235
+      objectReference: {fileID: 0}
     - target: {fileID: 2110300897594051748, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 25.263216
@@ -493,6 +505,14 @@ PrefabInstance:
     - target: {fileID: 5224294948638376672, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.30931
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306550369752532357, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306550369752532357, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.235
       objectReference: {fileID: 0}
     - target: {fileID: 5368617793776259798, guid: 0c37abe9421ee894da5e565e57ecb50f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -689,7 +709,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7535206418674459951}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.8
   m_Speed: 1
   m_Acceleration: 10
   avoidancePriority: 50

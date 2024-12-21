@@ -12,7 +12,7 @@ public class SpawnZone : MonoBehaviour
 
     public void Awake()
     {
-        MaxCount = 3;
+        MaxCount = 1;
         CurrentCount = SpawnedObjects.Count;
     }
 

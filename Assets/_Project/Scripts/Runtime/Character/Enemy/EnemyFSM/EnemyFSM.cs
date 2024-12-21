@@ -14,6 +14,7 @@ public class EnemyFSM : FSM
     public Transform SelfTransform;
     public Transform PlayerTransform;
     public float AgroRadius;
+    public float AttackRadius;
 
     public EnemyFSM(Enemy enemy, EnemyModel model)
     {
@@ -26,6 +27,7 @@ public class EnemyFSM : FSM
         SelfTransform = Enemy.transform;
         PlayerTransform = ServiceLocator.Get<Player>().transform;
         AgroRadius = 8;
+        AttackRadius = 2;
     }
 
     public override void Update()

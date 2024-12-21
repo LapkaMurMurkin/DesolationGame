@@ -15,7 +15,7 @@ public class EnemyFSMState_Aggro : EnemyFSMState
         _selfTransform = _FSM.SelfTransform;
         _playerTransform = _FSM.PlayerTransform;
         _agroRadius = _FSM.AgroRadius;
-        _attackRadius = _FSM.Enemy.GetComponent<NavMeshAgent>().radius * 1.5f;
+        _attackRadius = _FSM.AttackRadius;
         _agroTime = 3;
         _timer = 0;
     }
